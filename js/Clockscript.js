@@ -615,7 +615,7 @@ function setupSlider(){
         $('#myCarousel').find('#dailytime').attr('data-interval', delay* 1000);
     }else{
         $('<div class="item" style="height:auto" data-interval="'+delay * 1000 +'"><div class="container">'+
-            '<img src="'+m[i].source+'" style="padding-top:20px;width:900px;height:550px">'+
+            '<img src="'+m[i].source+'" style="padding-top:20px;width:900px;height:530px">'+
             '</div><div class="carousel-caption"></div>   </div>'
          ).appendTo('.carousel-inner');
     }
