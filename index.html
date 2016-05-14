@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" href="../../favicon.ico">
+      <title>ISGVF</title>
+      <!-- Bootstrap core CSS -->
+      <link href="lib/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="css/cover.css" rel="stylesheet">
+      <link href="css/carousel.css" rel="stylesheet">
+      <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+      <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+      <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+      <div class="site-wrapper">
+         <div class="site-wrapper-inner">
+            <div class="cover-container">
+               <div class="masthead clearfix">
+                  <div class="inner-top">
+                     <div class="masthead-brand"><img src="images/isgvf-logo-white-1.png" alt="ISGV Logo" style="width:150px;height:75px;"></div>
+                     <nav>
+                        <div id="header-title" class="header-title"></div>
+                        <div id="header-subtitle" class="header-subtitle"></div>
+                     </nav>
+                     <div id="iqama-time" class="iqama-time"> IQAMAH TIME </div>
+                  </div>
+               </div>
+               <div id="myCarousel" class="carousel slide" >
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                     <!-- 
+                     <li data-target="#myCarousel" data-slide-to="0"></li>
+                     <li data-target="#myCarousel" data-slide-to="1"></li>
+                     -->                   
+                  </ol>
+                  <div class="carousel-inner" role="listbox">
+                   <div class='item' id='dailytime' >
+                        <div style='display:none'>
+                           <canvas id='refreshClock' width='30' height='30'  style='position: absolute; top:1px; left:2px; border: 0; cursor: pointer; z-index: 1;'></canvas>
+                           <canvas id='helpCan' width='30' height='30'  style='position: absolute; top:30px; left:2px; border: 0; cursor: pointer; z-index: 1; '></canvas>
+                           <canvas id='currentclockcanvas' ></canvas>
+                        </div>
+                        <div class='inner' >
+                           <div id='clockdiv1'  class='clock-div'>
+                              <div class='row ' >
+                                 <div class='col-lg-1' id='padleft' style='width:5px'>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2' id='clock7'>
+                                    <canvas style='border-right:1px dotted white; ' id='lowerbase7canvas' ></canvas>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2' id='clock8'>
+                                    <canvas style='border-right:1px dotted white; ' id='lowerbase8canvas' ></canvas>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2' id='clock9'>
+                                    <canvas style='border-right:1px dotted white; ' id='lowerbase9canvas' ></canvas>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2' id='clock10'>
+                                    <canvas style='border-right:1px dotted white; ' id='lowerbase10canvas' ></canvas>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2' id='clock11'>
+                                    <canvas style='border:0px dotted white; ' id='lowerbase11canvas' ></canvas>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-1' id='padright' style='width:5px'>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                              </div>
+                              <!-- /.row -->
+                           </div>
+                        </div>
+                     </div>  
+                     <!-- close for item -->
+                     <!-- 
+                     <div class="item" data-interval="2000">
+                        <div class="container">
+                           <div class="row">
+                              <div id="month-time" class="col-lg-12 col-sm-12">
+                                 <div id="week-time"></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     -->
+                  </div>
+                  <!-- 
+                     <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                     <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                     -->
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="utildiv" class="util-div" style="display:none">
+         <canvas style="border:0px solid gray; cursor: pointer; background-color: #FF3300" id='lowerbase5canvas' ></canvas>
+      </div>
+      <div id="mastfoot" class="mastfoot">
+         
+         <div id="utilityfooter">
+            <div class="sunrise-time ">
+               <canvas id='lowerbase1canvas' ></canvas>
+            </div>
+            <div class="qibla-direction" >
+               <canvas  id='lowerbase3canvas' ></canvas>
+            </div>
+            <div class="zawal-time " >
+               <canvas  id='lowerbase6canvas' ></canvas>
+            </div>
+            <div class="juma-time">
+               <canvas  id='lowerbase4canvas' ></canvas>
+            </div>
+            <div class="moon-time">
+               <canvas  id='lowerbase2canvas' ></canvas>
+            </div>
+            <div id="currtime" class="curr-time">
+               <canvas id='timecanvas' ></canvas>
+            </div>
+         </div>
+
+          <div class='inner-scroll '>
+            <marquee class="scroll" style='padding:10px' id='scrollingmessage'>
+            </marquee>
+         </div>
+
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <!-- Bootstrap core JavaScript
+         ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="lib/jquery/jquery-2.2.1.min.js"></script>
+      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+      <script src="lib/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src='json/message.json' type="text/javascript"></script>      
+      <script src='json/setting.json' type="text/javascript"></script>
+      <script src='js/clockSetting.js' type="text/javascript"></script>
+      <script src='json/time.json' type="text/javascript"></script>
+      <script src='js/clockutility.js' type="text/javascript"></script>
+      <script src='js/prayerClock.js' type="text/javascript"></script>
+      <script src='js/prayerTime2.3.js' type="text/javascript"></script>
+      <script src='js/Clockscript.js' type="text/javascript"></script>
+      <script type="text/javascript">
+         $(document).ready( function(){
+          var appWidth, appHight;
+              
+                appWidth = window.innerHeight;
+                appHight = window.innerWidth;
+                  
+         
+          initApp();
+          reponsdFooterCanvas(appWidth, appHight);
+          refreshClock(7);
+              //
+         });
+         
+         function reponsdFooterCanvas(appWidth, appHight){
+          $('#helpcanvas').attr('height', (appHight/10)*2.3 );
+         for(var i = 7; i < 12; i++){
+            var btc = $('#lowerbase'+i+'canvas');
+                var btct = btc.get(0).getContext('2d');
+                btc.attr('width', (appWidth/10)*3.8 ); //max width
+                  
+            btc.attr('height', (appHight/10)*2.5 ); //max width
+         
+         
+         }
+         
+          for(var i = 1; i < 7; i++){
+                var btc = $('#lowerbase'+i+'canvas');
+                  var btct = btc.get(0).getContext('2d');
+                      if(i == 1 || i == 2 || i == 3 || i == 4 || i == 6) {
+                  btc.attr('width', appWidth/4.5 ); //max width
+                      }else{
+                      btc.attr('width', appWidth/9 ); //max width                  
+                      }
+                btc.attr('height',  (appHight/10)*1); //max width
+         
+         }
+         
+         
+         }
+         
+         
+         
+         
+      </script>
+   </body>
+</html>

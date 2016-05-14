@@ -1,0 +1,325 @@
+/*
+ * Globals
+ */
+
+/* Links */
+
+@font-face {
+    font-family: isgvf-font;
+    //src: url(../lib/Adequate-ExtraLight.ttf);
+    src: url(../lib/Existence-Light.otf);
+}
+
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #333;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+   //background: url(../images/bg14.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  background-color: #478551
+
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+.inner-top {
+  padding: 10px;
+}
+.header-title{
+  //font-family: Calibri;
+  font-size:40px;
+      padding-bottom: 10px;
+}
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: -5px;
+  padding-left:15px;
+  margin-bottom: 10px;
+}
+
+.scroll{
+  background:rgba(255, 255, 255, 0.80);
+  font-weight: bold;
+  //color: #484646;
+  color:#CB0000;
+  font-size: 25px;
+  text-shadow:none;
+  //margin-left: 10px;
+  //margin-right: 10px;
+  border-radius: 6px;
+  margin:10px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+
+}
+
+.v-separator
+{
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 100px;
+    border-right: 1px solid #fafafa;
+    border-left: 1px solid #b4b4b4;
+    padding: 0;
+}
+
+.col-lg-2{
+  width:19%;
+}
+.header-subtitle{
+    margin-top: -17px;
+    font-size: 25px;
+    //font-family: isgvf-font;
+}
+
+.iqama-time{
+  background:rgba(255, 255, 255, 0.80);
+  color:#484646;
+  font-size: 30px;
+  font-weight: 500;
+  text-shadow:none;
+  border-radius: 6px;
+  //margin-top:3px;
+      margin: 17px 8px 0 9px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+
+}
+
+.curr-time{
+    float: right;
+    //margin: 10px;
+    padding-right:30px;
+    //border-radius:6px;
+    //box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26)
+}
+
+.curr-time1{
+    height: 100px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.58);
+    color:#484646;
+    font-size:50px;
+    //padding: 6px;
+    float: right;
+    margin: 10px;
+    border-radius:6px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26)
+}
+
+.sunrise-time{
+  float:left;
+  padding-left:75px;
+}
+
+.moon-time{
+  float:left;
+  //padding-left:50px;
+}
+
+.qibla-direction {
+  float:left;
+  padding-left:   12px;
+}
+
+.juma-time {
+  float:left;
+}
+
+.zawal-time {
+  float:left;
+}
+
+.inner-scroll{
+  padding:3px;
+}
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+
+  }
+  .masthead-nav {
+    
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+.clock-div {
+  background:rgba(29, 29, 29, 0.4);
+  
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  //margin-top: -40px;
+}
+
+.inner-scroll h3 {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);  
+ transform:translateX(100%);
+ /* Apply animation to this element */  
+ -moz-animation: inner-scroll 15s linear infinite;
+ -webkit-animation: inner-scroll 15s linear infinite;
+ animation: inner-scroll 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes inner-scroll {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes inner-scroll {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes inner-scroll {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Firefox bug fix */
+ -webkit-transform: translateX(100%); /* Firefox bug fix */
+ transform: translateX(100%);     
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Firefox bug fix */
+ -webkit-transform: translateX(-100%); /* Firefox bug fix */
+ transform: translateX(-100%); 
+ }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+  
+  }
+}
