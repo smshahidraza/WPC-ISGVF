@@ -737,6 +737,26 @@ function setupSlider() {
         $('<li data-target="#myCarousel" data-slide-to="' + (i) + '"></li>').appendTo('.carousel-indicators');
         if (type === 'dailytime') {
             $('#myCarousel').find('#dailytime').attr('data-interval', delay * 1000);
+        }else if (type === 'monthtime') {
+                $('<div class="item" id="weekprayertime" data-interval="' + delay * 1000 + '">'+
+                        '<div class="container"><div class="row">'+
+                              '<div id="month-time" class="col-lg-12 col-sm-12">'+
+                                 '<div id="week-time"></div></div>'+
+                              '</div></div></div>'
+                     ).appendTo('.carousel-inner');
+
+            //$('#myCarousel').find('#weekprayertime').attr('data-interval', delay * 1000);
+            //.appendTo('.carousel-inner');
+            loadSetting(currentDate.getMonth(),currentDate.getFullYear());
+         }else if (type === 'ramadantime') {
+                $('<div class="item" id="ramadanprayertime" data-interval="' + delay * 1000 + '">'+
+                        '<div class="container"><div class="row">'+
+                              '<div id="ramadan-time" class="col-lg-12 col-sm-12">'+
+                                 '<div id="ramadan-time"></div></div>'+
+                              '</div></div></div>'
+                     ).appendTo('.carousel-inner');
+
+            loadRamadanCalendar(currentDate.getMonth(),currentDate.getFullYear());
         } else {
             $('<div class="item" style="height:auto" data-interval="' + delay * 1000 + '"><div class="container">' +
                 '<img src="' + m[i].source + '" style="padding-top:20px;width:900px;height:530px">' +
@@ -793,12 +813,12 @@ function setupSlider() {
 
 function setupApp() {
 
-    setupPrayerTimeSetting();
-    setupSlider();
-
-
     var date = new Date(); // today
     currentDate = date;
+
+    setupPrayerTimeSetting();
+
+
     mode = 'manual'; // manual
     dayLightSaving = 'auto',
         method = 'ISNA';
@@ -816,7 +836,7 @@ function setupApp() {
     todayAutoPrayertimes = prayTimes.getTimes(new Date(), [40.0319, -75.4555], -5); // 40.066955, -75.433935
     console.log("Sunrise : " + todayAutoPrayertimes['sunrise']);
     console.log('Noon : ' + todayAutoPrayertimes['dhuhr']);
-    //loadSetting(currentDate.getMonth(),currentDate.getFullYear());
+    // loadSetting(currentDate.getMonth(),currentDate.getFullYear());
 
     //prayTime.midDay();
 
@@ -827,21 +847,21 @@ function setupApp() {
     //    reloadClockWithTodayDate();
     //}, false);
 
-    lowerbase4canvas.addEventListener('click', function(event) {
-        reloadClockWithLeft();
-    }, false);
+    // lowerbase4canvas.addEventListener('click', function(event) {
+    //     reloadClockWithLeft();
+    // }, false);
 
-    lowerbase5canvas.addEventListener('click', function(event) {
-        reloadClockWithRight();
-    }, false);
+    // lowerbase5canvas.addEventListener('click', function(event) {
+    //     reloadClockWithRight();
+    // }, false);
 
-    lowerbase3canvas.addEventListener('click', function(event) {
-        loadSetting(currentDate.getMonth(), currentDate.getFullYear());
-    }, false);
+    // lowerbase3canvas.addEventListener('click', function(event) {
+    //     loadSetting(currentDate.getMonth(), currentDate.getFullYear());
+    // }, false);
 
-    currentclockcanvas.addEventListener('click', function(event) {
-        showMaxMinTime();
-    }, false);
+    // currentclockcanvas.addEventListener('click', function(event) {
+    //     showMaxMinTime();
+    // }, false);
 
     //helpCanavas.addEventListener('click', function(event) {
     //    showHelp();
@@ -883,6 +903,8 @@ function setupApp() {
 
     updatePrayerClockTime();
     clocksArray[0].CURRENT.name  = "NONE";
+    setupSlider();
+
     //createUtilityIcon();
     //createFixedUtilityIcon();
 }
@@ -939,9 +961,9 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
 
     //console.log(todayDate.getMonth()+1+", " + getDaysInMonth(todayDate.getMonth()+1, todayDate.getFullYear())+", " + todayDate.getFullYear());
     var monthTime = "<h2 data-animation='animated bounceInLeft'>" + todayDate.getMonthName().toUpperCase() + ", " + todayDate.getFullYear() + "<h3>";
-    monthTime += "<table style='width:100%' border='0' id='settingbody' summary='Time Setting'><thead><tr class='month-time-th'>";
+    monthTime += "<table style='width:100%' border='0' class='weektime' id='settingbody' summary='Time Setting'><thead><tr class='monthprayer-time-th'>";
     //monthTime +="<th  style='font-size:18px; text-align:left' colspan='4'>"+todayDate.getMonthName()+", "+todayDate.getFullYear()+"</th><th  scope='col'></th><th  scope='col' style='font-size:22px'><a href='#' onclick='closesetting();return false;''>x</a></th></tr></thead><tbody>";
-    monthTime += "<th  scope='col'>DATES</th><th  scope='col'>FAJR</th><th  scope='col'>DHUHR</th><th  scope='col'>ASR</th><th  scope='col'>MAGHRIB</th><th  scope='col'>ISHA</th></tr></thead><tbody>";
+    monthTime += "<th  scope='col'></th><th  scope='col'>DATES</th><th  scope='col'>FAJR</th><th  scope='col'>DHUHR</th><th  scope='col'>ASR</th><th  scope='col'>MAGHRIB</th><th  scope='col'>ISHA</th></tr></thead><tbody>";
 
     //"IMASK &nbsp; FAJR &nbsp; Sunrise &nbsp; Dhuhr &nbsp; Asr &nbsp; Sunset &nbsp; Maghrib &nbsp; Isha &nbsp; Midnight </br>";
     var startDay; //monthBegin;
@@ -951,6 +973,7 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     var daytimeFriday = "";
     var daytimeSunday = "";
     var weekperiod = "";
+    var maghribTIme= "";
     var index = 0;
     var rowNumber = 1;
 
@@ -983,6 +1006,16 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
         //console.log(monthBegin);
         if (monthBegin.getDay() == 0) {
             weekperiod += getDDMMMFromDate(monthBegin);
+            
+            timeObject = prayerClocks.getPrayerClockForDay(monthBegin);
+            index = 0;
+            for (var i in timeObject) {
+                if (index == 6) {
+                    var tempDate = convertToDateObject(timeObject[i].time, 'FLOAT', monthBegin);
+                    maghribTIme += formDateToStringHMM(tempDate);
+                }
+                index++;
+            }
 
         }
 
@@ -1003,9 +1036,11 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
             timeObject = prayerClocks.getPrayerClockForDay(monthBegin);
             index = 0;
             for (var i in timeObject) {
-                if (index == 4 || index == 6 || index == 7) {
-                    var tempDate = convertToDateObject(timeObject[i].time, 'FLOAT', monthBegin);
+                var tempDate = convertToDateObject(timeObject[i].time, 'FLOAT', monthBegin);
+                if (index == 4 || index == 7) {                   
                     daytimeSunday += "<td>" + formDateToStringHMM(tempDate) + "</td>";
+                }else if(index == 6 ){
+                    daytimeSunday += "<td>" + maghribTIme+" - " +formDateToStringHMM(tempDate) + "</td>";                    
                 }
                 index++;
             }
@@ -1026,23 +1061,27 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
             var arrow = "";
 
             if (nofd >= 0 && nofd <= 6) {
-                background = "background:rgba(0,172,193,0.3)";
-                arrow = "&#8594;";
+                //background = "background:rgba(0,172,193,0.3)";
+                 background = "background:rgba(255, 207, 0, 0.6);color:rgb(46, 49, 46);text-shadow:none";
+                
+                 //arrow = "&#8594;";
+                 arrow = "class='glyphicon glyphicon-arrow-right'";
             } else {
 
                 if (rowNumber % 2 == 0) {
-                    background = "background:rgba(9, 70, 73, 0.20)";
+                    //background = "background:rgba(9, 70, 73, 0.20)";
+                    background = "background:rgba(0,172,193,0.3)";
                 } else {
-                    background = "background:rgba(121, 120, 120, 0.20)";
+                    background = "background:rgba(255, 255, 255, 0.80); color:rgb(71, 133, 81);text-shadow:none";
                 }
             }
 
-            daytime += "<tr class='month-time-tr' style='" + background + "'><td><b>" + arrow + "</b>&nbsp;&nbsp;" + weekperiod + "</td>";
+            daytime += "<tr class='monthprayer-time-tr' style='" + background + "'><td><span " + arrow + "></span></td><td></b>&nbsp;&nbsp;" + weekperiod + "</td>";
             daytime += daytimeFriday + "" + daytimeSunday;
             //+daytime;
             monthTime += daytime + "</tr>";
             rowNumber++;
-            daytimeFriday = daytimeSunday = weekperiod = daytime = "";
+            daytimeFriday = daytimeSunday = weekperiod = daytime =maghribTIme= "";
         }
 
         /*
@@ -1101,6 +1140,221 @@ function getLastDayOfMonth(month, year, dayNum) {
 
     return monthEnd;
 }
+
+function loadRamadanCalendar(ramdanBeginTime) {
+    //monthNum = 0;
+    //monthNum = monthNumSetting;
+    //yearNumSetting = _yearNumSetting;
+    var todayDate = new Date();
+    var crdate = new Date();
+    var one_day = 1000 * 60 * 60 * 24;
+
+    //todayDate.setDate(1);
+    //todayDate.setMonth(monthNum);
+    //todayDate.setYear(_yearNumSetting);
+    //if(yearNumSetting != 'undefined'){
+    //     todayDate.setYear(yearNumSetting);
+    //}
+
+    var monthBegin = new Date(todayDate.getFullYear(), todayDate.getMonth(), 10);
+
+    
+    var monthEnd = new Date(todayDate.getFullYear(), todayDate.getMonth(), (getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear()))/2);
+    monthEnd.setDate(monthBegin.getDate() + 29);
+
+    //console.log("Month:" + monthNum + "Year:" + yearNumSetting);
+
+    //console.log(todayDate.getMonth()+1+", " + getDaysInMonth(todayDate.getMonth()+1, todayDate.getFullYear())+", " + todayDate.getFullYear());
+    var monthTime = "<h2 data-animation='animated bounceInLeft'>" + todayDate.getMonthName().toUpperCase() + ", " + todayDate.getFullYear() + "<h3>";
+    monthTime += "<table style='float:left;width:48%;font-size: 17px;' border='0' class='ramdantime' id='settingbody' summary='Time Setting'><thead><tr class='ramdan-time-th'>";
+    //monthTime +="<th  style='font-size:18px; text-align:left' colspan='4'>"+todayDate.getMonthName()+", "+todayDate.getFullYear()+"</th><th  scope='col'></th><th  scope='col' style='font-size:22px'><a href='#' onclick='closesetting();return false;''>x</a></th></tr></thead><tbody>";
+    monthTime += "<td  scope='col'></td><td  scope='col'>Day</td><td  scope='col'>Ramadan</td><td  scope='col'>"+monthBegin.getShortMonthName()+"-<br>"+ monthEnd.getShortMonthName()+"</td><td  scope='col'>IMASK</td><td  scope='col'>Iftar</td></tr></thead><tbody>";
+
+    //"IMASK &nbsp; FAJR &nbsp; Sunrise &nbsp; Dhuhr &nbsp; Asr &nbsp; Sunset &nbsp; Maghrib &nbsp; Isha &nbsp; Midnight </br>";
+    var startDay; //monthBegin;
+    var endDay; // = monthBegin;
+
+    var daytime = "";
+    var daytimeFriday = "";
+    var daytimeSunday = "";
+    var weekperiod = "";
+    var index = 0;
+    var rowNumber = 1;
+
+    var fastingDay = 1;
+
+    while (monthBegin <= monthEnd) {
+
+
+
+
+            weekperiod += "<td>"+monthBegin.getShortDayName()+"</td>";
+            weekperiod += "<td style='width:20px'>"+fastingDay+"</td>";    
+            weekperiod += "<td>"+monthBegin.getDate()+"</td>";
+            timeObject = prayerClocks.getPrayerClockForDay(monthBegin);
+            index = 0;
+            fastingDay = fastingDay + 1;
+            for (var i in timeObject) {
+                if (index == 0 || index == 5 ) {
+                    var tempDate = convertToDateObject(timeObject[i].time, 'FLOAT', monthBegin);
+                    daytimeSunday += "<td>" + formDateToStringHMM(tempDate) + "</td>";
+                }
+                index++;
+            }
+
+
+            var background = "";
+
+
+            // Convert both dates to milliseconds
+            var date1_ms = monthBegin.getTime();
+            var date2_ms = crdate.getTime();
+
+            // Calculate the difference in milliseconds
+            var difference_ms = date1_ms - date2_ms;
+
+            // Convert back to days and return
+            var nofd = Math.round(difference_ms / one_day);
+            var arrow = "";
+
+            
+            if (currentDate.getDate() == monthBegin.getDate()) {
+                //background = "background:rgba(0,172,193,0.3)";
+                 background = "background:rgba(255, 207, 0, 0.6);color:rgb(46, 49, 46);text-shadow:none";
+                
+                 //arrow = "&#8594;";
+                 arrow = "class='glyphicon glyphicon-arrow-right'";
+            }else  if (monthBegin.getDay() == 6 || monthBegin.getDay() == 0) {
+
+                 background = "background:rgb(53, 143, 210);text-shadow:none;";
+
+            } else {
+
+                if (rowNumber % 2 == 0) {
+                    //background = "background:rgba(9, 70, 73, 0.20)";
+                    background = "background:rgba(0,172,193,0.3)";
+                } else {
+                    background = "background:rgba(255, 255, 255, 0.80); color:rgb(71, 133, 81);text-shadow:none";
+                }
+            }
+
+            daytime += "<tr class='ramdan-time-th' style='" + background + "'><td><span " + arrow + "></span></td>" + weekperiod;
+            daytime += daytimeFriday + "" + daytimeSunday;
+            //+daytime;
+            monthTime += daytime + "</tr>";
+            rowNumber++;
+            daytimeFriday = daytimeSunday = weekperiod = daytime = "";
+        
+
+
+        monthBegin.setDate(monthBegin.getDate() + 1);
+
+            if(fastingDay === 16){
+                 monthTime += "</tbody></table>";
+                 monthTime += "<table style='float:right; width:48%;font-size: 17px;' border='0' class='ramdantime' id='settingbody' summary='Time Setting'><thead><tr class='ramdan-time-th'>";
+                 monthTime += "<td  scope='col'></td><td  scope='col'>Day</td><td  scope='col'>June</td><td  scope='col'>Ramadan</td><td  scope='col'>IMASK</td><td  scope='col'>Iftar</td></tr></thead><tbody>";
+                rowNumber = 1;
+            }
+    }
+    //console.log(monthTime);
+    monthTime += "</tbody></table>";
+
+    //monthTime += "<table style='width:50%' border='0' class='ramdantime' id='settingbody' summary='Time Setting'><thead><tr class='month-time-th'>";
+    //monthTime +="<th  style='font-size:18px; text-align:left' colspan='4'>"+todayDate.getMonthName()+", "+todayDate.getFullYear()+"</th><th  scope='col'></th><th  scope='col' style='font-size:22px'><a href='#' onclick='closesetting();return false;''>x</a></th></tr></thead><tbody>";
+    //monthTime += "<th  scope='col'></th><th  scope='col'>Day</th><th  scope='col'>June</th><th  scope='col'>Ramadan</th><th  scope='col'>IMASK</th><th  scope='col'>Iftar</th></tr></thead><tbody>";
+    
+    //monthBegin = 15;
+    /*
+    monthBegin = new Date(todayDate.getFullYear(), todayDate.getMonth(), 16);
+    monthEnd = new Date(todayDate.getFullYear(), todayDate.getMonth(), (getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear())));
+    while (monthBegin <= monthEnd) {
+
+
+            weekperiod += " - " + getDDMMMFromDate(monthBegin);
+            timeObject = prayerClocks.getPrayerClockForDay(monthBegin);
+            index = 0;
+            for (var i in timeObject) {
+                if (index == 4 || index == 6 || index == 7) {
+                    var tempDate = convertToDateObject(timeObject[i].time, 'FLOAT', monthBegin);
+                    daytimeSunday += "<td>" + formDateToStringHMM(tempDate) + "</td>";
+                }
+                index++;
+            }
+
+
+            var background = "";
+
+
+            // Convert both dates to milliseconds
+            var date1_ms = monthBegin.getTime();
+            var date2_ms = crdate.getTime();
+
+            // Calculate the difference in milliseconds
+            var difference_ms = date1_ms - date2_ms;
+
+            // Convert back to days and return
+            var nofd = Math.round(difference_ms / one_day);
+            var arrow = "";
+
+            if (currentDate.getDate() == monthBegin.getDate()) {
+                //background = "background:rgba(0,172,193,0.3)";
+                 background = "background:rgba(255, 207, 0, 0.6);color:rgb(46, 49, 46);text-shadow:none";
+                
+                 //arrow = "&#8594;";
+                 arrow = "class='glyphicon glyphicon-arrow-right'";
+            } else {
+
+                if (rowNumber % 2 == 0) {
+                    //background = "background:rgba(9, 70, 73, 0.20)";
+                    background = "background:rgba(0,172,193,0.3)";
+                } else {
+                    background = "background:rgba(255, 255, 255, 0.80); color:rgb(71, 133, 81);text-shadow:none";
+                }
+            }
+
+            daytime += "<tr class='month-time-tr' style='" + background + "'><td><span " + arrow + "></span></td><td></b>&nbsp;&nbsp;" + weekperiod + "</td>";
+            daytime += daytimeFriday + "" + daytimeSunday;
+            //+daytime;
+            monthTime += daytime + "</tr>";
+            rowNumber++;
+            daytimeFriday = daytimeSunday = weekperiod = daytime = "";
+        
+
+
+        monthBegin.setDate(monthBegin.getDate() + 1);
+    }
+    //console.log(monthTime);
+    monthTime += "</tbody></table>";
+
+    */
+
+    //document.getElementById("clockBody").style.display="none";
+    document.getElementById("ramadan-time").style.display = "block";
+
+    document.getElementById("ramadan-time").innerHTML = monthTime;
+    //settingmode = true;
+}
+
+function getLastDayOfMonth(month, year, dayNum) {
+    //monthNum = monthNumSetting;
+    //yearNumSetting = _yearNumSetting;
+    var todayDate = new Date();
+    //var crdate = new Date();
+
+    //todayDate.setDate(1);
+    todayDate.setMonth(month);
+    todayDate.setYear(year);
+
+    var monthEnd = new Date(todayDate.getFullYear(), todayDate.getMonth(), getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear()));
+
+    while (monthEnd.getDay() != dayNum) {
+        monthEnd = new Date(monthEnd.setDate(monthEnd.getDate() - 1));
+
+    }
+
+    return monthEnd;
+}
+
 
 function getFirstDayOfMonth(month, year, dayNum) {
     var todayDate = new Date();

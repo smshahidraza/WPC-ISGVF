@@ -15,10 +15,11 @@
 
 	"SLIDER" :
 	[
-		{"type":"dailytime", "show": "yes", "delayinsec":"5"},
-		{"type":"monthtime", "show": "no", "delayinsec":"2"},
-{"type":"slides", "show":"yes", "delayinsec":"3", "source":"slides/isgvf_poster.jpg"},
-{"type":"slides", "show":"yes", "delayinsec":"5", "source":"slides/enter.jpg"},
+		{"type":"dailytime", "show": "yes", "delayinsec":"3"}, // Do not remove this line.
+		{"type":"monthtime", "show": "yes", "delayinsec":"30"}, // Do not remove this line.
+		{"type":"ramadantime", "show": "yes", "delayinsec":"30"}, // Do not remove this line.
+		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/isgvf_poster.jpg"},
+		{"type":"slides", "show":"yes", "delayinsec":"3", "source":"slides/enter.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/exit.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/isgvf_halfsheet.jpg"},		
 		{"type":"slides", "show":"no", "delayinsec":"10", "source":"slides/bismillah.png"},

@@ -277,6 +277,19 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
   //margin-top: -40px;
 }
+.weektime th, td, tr {
+  text-align:center;
+  height:60px;
+}
+.ramdan-time-th{
+  height:30px;
+}
+.ramdantime th, td {
+  text-align:center;
+  height:30px;
+  border-bottom:1px solid #ccc;
+}
+
 
 .inner-scroll h3 {
  position: absolute;
