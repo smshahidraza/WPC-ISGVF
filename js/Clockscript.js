@@ -23,6 +23,11 @@ var monthNum, yearNumSetting;
 
 var timeLimitArcColor = "#00ACC1"; //"#0099CC";
 var timeLimitArcColorRGB = "rgba(0,172,193,0.7)";
+var clockColorCurrent = "#333";
+var clockColor = "white";
+var handColorTransparent = "rgba(245,245,245,0.7)";
+var clockHandColor = "rgba(245,245,245,0.6)";
+
 var fadeIn = true;
 var fadeInClock = true;
 var reloadClockAnimation = false;
@@ -100,14 +105,14 @@ var currentCanvasName = "";
 var prayerClockIns;
 var clockTitle = "";
 
-function createCircle(mycanvas, lineWidth, radius) {
+function createCircle(mycanvas, lineWidth, radius, color) {
     mycontext = mycanvas.getContext("2d");
     mycontext.beginPath();
     mycontext.arc(mycanvas.width / 2, mycanvas.height / 2, radius, 0, Math.PI * 2, true);
     //mycontext.fillStyle = '#212124';
     // mycontext.fill();
     mycontext.lineWidth = lineWidth;
-    mycontext.strokeStyle = 'white';
+    mycontext.strokeStyle =  color;
     mycontext.stroke();
 }
 
@@ -122,7 +127,7 @@ function createCenter(mycanvas, mylineWidth, radius, color) {
 
 function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWidth, context, darwArrow) {
     context.beginPath();
-    context.strokeStyle = 'white';
+    context.strokeStyle = clockColor;
     var stAngle = convertTimeToRadianAngle(startTime),
         enAngle = convertTimeToRadianAngle(endTime);
 
@@ -134,7 +139,7 @@ function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWid
         enAngle2 = convertTimeToRadianAngle(sdate3); //(Math.PI * 2) * (eLoc / 60) - Math.PI / 2;
 
     context.fillSyle = 'blue';
-    context.lineWidth = 2;
+    context.lineWidth = 3;
 
     if (darwArrow) {
         if (next == 'UP') {
@@ -171,8 +176,10 @@ function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWid
 
 function createClockAnimation(canvasIndexPassed) {
 
-    //console.log("Is it running..");
+    console.log("Is it running..");
+   //  return false;
     var canvasIndex = 7;
+    var color;
     var radius = r;
     lineWidth = 2;
     isSmallClock = true;
@@ -208,6 +215,21 @@ function createClockAnimation(canvasIndexPassed) {
         */
             var canvasName = 'lowerbase' + canvasIndex + 'canvas';
             canvas = document.getElementById(canvasName);
+
+            if (getCurrentPrayerTime().name == clocksArray[0][index].name) {
+                //$("#clock"+canvasIndex).css("padding-top","10px");
+                //$("#" + canvasName).css("background", "rgba(255,207,0,0.6)");
+                //$("#" + canvasName).css("border-bottom", "3px solid white");
+                color = clockColorCurrent;
+                //currentPrayerIndex = index;
+                //currentCanvasName = canvasName;
+
+            } else {
+                //$("#" + canvasName).css("background", "none");
+                ///$("#" + canvasName).css("border-bottom", "");
+                color = clockColor;
+            }
+
             radius = canvas.width / 2 - canvas.width / 12;
             lineWidth = 3;
             isSmallClock = true;
@@ -224,7 +246,7 @@ function createClockAnimation(canvasIndexPassed) {
                 timeAnimation = true;
             }
             createClock(canvas, animateSteps[0], sdate, edate,
-                clocksArray[0][index].name, clocksArray[0][index].next, lineWidth, radius, isSmallClock, timeAnimation);
+                clocksArray[0][index].name, clocksArray[0][index].next, lineWidth, radius, isSmallClock, color);
             animateSteps = animateSteps.slice(1);
         } else {
             clearTimeout(animateloop);
@@ -248,6 +270,7 @@ function refreshClock() {
 
     //fillClockArray();
     var currentTimeChanged = false;
+    var currentPrayerTime = false;
     var todayDate = new Date();
     //var currentTime = formDateToString(todayDate);
 
@@ -261,16 +284,35 @@ function refreshClock() {
 
     if(clocksArray[0][currentPrayerIndex] != null){
        var color="red";
-        if (formDateToStringHMMA(clocksArray[0][currentPrayerIndex].time) == formDateToStringHMMA(todayDate) ) {
+        if (formDateToStringHMMA(clocksArray[0][currentPrayerIndex].time) === formDateToStringHMMA(todayDate) ) {
+            //currentPrayerTime = true;
             //        color="red";
+            var currentClockPrayerBlink =$("#" + currentCanvasName)[0].getContext('2d');
+
+            //currentClockPrayerBlink.clearRect(0, 0, currentClockPrayerBlink.canvas.width, currentClockPrayerBlink.canvas.height);
             if(fadeInClock){
 
-            $("#"+currentCanvasName).css("background", "none");
+                $("#"+currentCanvasName).css("background", "none");
                     fadeInClock = false;
+                    currentClockPrayerBlink.strokeStyle = "white";
+                    currentClockPrayerBlink.fillStyle = "white";
+
             }else{
-            $("#"+currentCanvasName).css("background", "rgba(255,207,0,0.6)");
-                fadeInClock = true;
+                $("#"+currentCanvasName).css("background", "rgba(255,207,0,0.6)");
+            //$("#" + currentCanvasName).css("color", "rgba(100,207,0,0.6)");
+                currentClockPrayerBlink.strokeStyle = "black";
+                currentClockPrayerBlink.fillStyle = "black";
+           
+
+            fadeInClock = true;
             }
+             currentClockPrayerBlink.save();
+             currentClockPrayerBlink.globalCompositeOperation = 'source-atop';
+            currentClockPrayerBlink.fillRect(0, 0, currentClockPrayerBlink.canvas.width, currentClockPrayerBlink.canvas.height);
+    //ctx.restore();
+            currentClockPrayerBlink.fill();
+            currentClockPrayerBlink.stroke();
+            currentClockPrayerBlink.restore();
         }else{
             //$("#lowerbase7canvas").css("background", "yellow");
         }
@@ -347,35 +389,39 @@ function refreshClock() {
                 } else {
                 */
                     //$("#clock"+canvasIndex).css("background-color","blue");
+                    //var color = "white";
                     var canvasName = 'lowerbase' + canvasIndex + 'canvas';
                     if (getCurrentPrayerTime().name == clocksArray[0][index].name) {
                         //$("#clock"+canvasIndex).css("padding-top","10px");
                         $("#" + canvasName).css("background", "rgba(255,207,0,0.6)");
                         $("#" + canvasName).css("border-bottom", "3px solid white");
+
+                        color = clockColorCurrent;
                         currentPrayerIndex = index;
                         currentCanvasName = canvasName;
 
                     } else {
                         $("#" + canvasName).css("background", "none");
                         $("#" + canvasName).css("border-bottom", "");
+                        color = clockColor;
                     }
 
                     canvas = document.getElementById(canvasName);
                     radius = canvas.width / 2 - canvas.width / 12;
-                    lineWidth = 2;
+                    lineWidth = 3;
                     isSmallClock = true;
                     //console.log(canvas.width+"radius" + radius+"-->"+isSmallClock+"canvasName"+canvasName);
                     //console.log(canvas.width+"radius" + radius+"-->"+isSmallClock+"canvasName"+canvasName);
 
                     createClock(canvas, clocksArray[0][index].time, clocksArray[0][index].maxtime, clocksArray[0][index].mintime,
-                        clocksArray[0][index].name, clocksArray[0][index].next, lineWidth, radius, isSmallClock);
+                        clocksArray[0][index].name, clocksArray[0][index].next, lineWidth, radius, isSmallClock, color);
 
 
                     //canvasName = 'lowerbase'+(canvasIndex-4)+'canvas';
                     // if(canvasName != 'lowerbase1canvas' || ){
                     // canvas = document.getElementById(canvasName);
                     //      createClock(canvas, clocksArray[0][index].time,clocksArray[0][index].maxtime, clocksArray[0][index].mintime, 
-                    //         clocksArray[0][index].name, clocksArray[0][index].next, lineWidth, radius, isSmallClock);
+                        //         clocksArray[0][index].name, clocksArray[0][index].next, lineWidth, radius, isSmallClock);
                     // }
                     canvasIndex++;
 
@@ -396,8 +442,8 @@ function createHand(mycanvas, loc, isHour, width, radius, color) {
         handRadius = isHour ? radius - x - Hx : radius - x;
     mycontext.beginPath();
     mycontext.lineWidth = 10;
-    mycontext.strokeStyle = color;
-    //mycontext.globalAlpha=1;
+    // mycontext.strokeStyle = color;
+    mycontext.globalAlpha=0.7;
 
     if (!isHour) {
         // mycontext.strokeStyle = 'rgba(245,245,245,0.7)';
@@ -410,18 +456,18 @@ function createHand(mycanvas, loc, isHour, width, radius, color) {
     mycontext.stroke();
 }
 
-function createHands(mycanvas, date, radius, lineWidth) {
+function createHands(mycanvas, date, radius, lineWidth, clockHandColor) {
 
     hour = date.getHours();
     hour = hour > 12 ? hour - 12 : hour;
     var minLineWidth = (lineWidth > 3) ? lineWidth - 2 : lineWidth;
     //console.log(minLineWidth+"--->lineWidth"+lineWidth);
-    createHand(mycanvas, hour * 5 + (date.getMinutes() / 60) * 5, true, lineWidth, radius, 'rgba(245,245,245,0.8)');
-    createHand(mycanvas, date.getMinutes(), false, minLineWidth, radius, "rgba(245,245,245,0.6)");
+    createHand(mycanvas, hour * 5 + (date.getMinutes() / 60) * 5, true, lineWidth, radius, clockHandColor);
+    createHand(mycanvas, date.getMinutes(), false, minLineWidth, radius, clockHandColor);
     //createSechand(date.getSeconds(), false, 0.2);
 }
 
-function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, radius, isSmallClock) {
+function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, radius, isSmallClock, clockColor) {
 
     console.log("Inside CLock createClock::");
     var minLineWidth = (lineWidth > 3) ? lineWidth - 2 : lineWidth;
@@ -433,63 +479,63 @@ function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, r
     //radius = canvas.width - padding;
     //console.log(canvas.width+":"+canvas.height+","+radius);
     if (!isSmallClock) {
-        createCircle(canvas, minLineWidth - 1, radius);
+        createCircle(canvas, minLineWidth - 1, radius, color);
         createTimeLimitArc(animateDate, sdate, edate, next, radius + 2, minLineWidth, context, true);
-        writeTimeInClock(animateDate, context, canvas, radius);
+        writeTimeInClock(animateDate, context, canvas, radius, clockColor);
 
         context.font = "lighter 20px Source Sans Pro";
-        writeInfoInClock(context, clockTitle + " - " + currentTime, radius + 15, 'UP', 'BIG');
+        writeInfoInClock(context, clockTitle + " - " + currentTime, radius + 15, 'UP', 'BIG',clockColor);
         //writeInfoInClock(context,"Prayer time is not updated.", radius+15,'UP', 'BIG');
-        writeInfoInClock(context, name, radius + 15, 'DOWN', 'BIG');
-        createCenter(canvas, lineWidth, lineWidth, 'white'); //2,3        
+        writeInfoInClock(context, name, radius + 15, 'DOWN', 'BIG',clockColor);
+        createCenter(canvas, lineWidth, lineWidth, clockColor); //2,3        
     } else {
-        createCircle(canvas, lineWidth, radius + 5);
+        createCircle(canvas, lineWidth, radius + 5, clockColor);
 
         //createTimeLimitArc(animateDate, sdate, edate, next, radius+5, minLineWidth, context, true);
-        createCenter(canvas, lineWidth, lineWidth + 1, 'white'); //2,3
+        createCenter(canvas, lineWidth, lineWidth + 1, clockColor); //2,3
         //context.font="lighter 12px Source Sans Pro";
         var ampm = formDateToStringHMMA(animateDate).indexOf("AM");
         var info = formDateToStringHMM(animateDate);
         //console.log(formDateToStringHMMA(animateDate)+"pppp"+ampm);
-        writeInfoInClock(context, info, radius, 'DOWN', 'SMALL');
-        writeAMPMfterTime(context, info, radius, ampm);
+        writeInfoInClock(context, info, radius, 'DOWN', 'SMALL', clockColor);
+        writeAMPMfterTime(context, info, radius, ampm, clockColor);
 
-        writeInfoInClock(context, name, radius, 'UP', 'SMALL');
+        writeInfoInClock(context, name, radius, 'UP', 'SMALL', clockColor);
 
     }
 
     var hour = animateDate.getHours();
     //console.log(formDateToStringHMM(animateDate)+"-->"+formDateToStringHMM(todayDate)+","+fadeIn);
-    if (formDateToStringHMMA(animateDate) == formDateToStringHMMA(todayDate)) {
-        reloadClockAnimation = true;
-        if (isSmallClock) {
-            if (fadeIn) {
-                //canvas.style.display="none";
-                //document.getElementById('currentclockcanvas').style.display="none";
-                createCenter(canvas, lineWidth, lineWidth + 1, 'white');
-                createHand(canvas, hour * 5 + (animateDate.getMinutes() / 60) * 5, true, lineWidth, radius, 'white');
-                createHand(canvas, animateDate.getMinutes(), false, minLineWidth, radius, "rgba(245,245,245,0.7)");
+    // if (formDateToStringHMMA(animateDate) == formDateToStringHMMA(todayDate)) {
+    //     reloadClockAnimation = true;
+    //     if (isSmallClock) {
+    //         if (fadeIn) {
+    //             //canvas.style.display="none";
+    //             //document.getElementById('currentclockcanvas').style.display="none";
+    //             createCenter(canvas, lineWidth, lineWidth + 1, clockColorCurrent);
+    //             createHand(canvas, hour * 5 + (animateDate.getMinutes() / 60) * 5, true, lineWidth, radius, clockColorCurrent);
+    //             createHand(canvas, animateDate.getMinutes(), false, minLineWidth, radius, clockColorCurrent);
 
-                fadeIn = false;
+    //             fadeIn = false;
 
-            } else {
-                //canvas.style.display="block";
-                createCenter(canvas, lineWidth, lineWidth + 1, timeLimitArcColor);
-                createHand(canvas, hour * 5 + (animateDate.getMinutes() / 60) * 5, true, lineWidth, radius, timeLimitArcColor);
-                createHand(canvas, animateDate.getMinutes(), false, minLineWidth, radius, timeLimitArcColorRGB);
+    //         } else {
+    //             //canvas.style.display="block";
+    //             createCenter(canvas, lineWidth, lineWidth + 1, "white");
+    //             createHand(canvas, hour * 5 + (animateDate.getMinutes() / 60) * 5, true, lineWidth, radius, "white");
+    //             createHand(canvas, animateDate.getMinutes(), false, minLineWidth, radius, "white");
 
-                //document.getElementById('currentclockcanvas').style.display="block";
-                fadeIn = true;
-            }
-        }
-    } else {
-        createCenter(canvas, lineWidth, lineWidth + 1, 'white');
-        createHand(canvas, hour * 5 + (animateDate.getMinutes() / 60) * 5, true, lineWidth, radius, 'rgba(245,245,245,0.7)');
-        createHand(canvas, animateDate.getMinutes(), false, minLineWidth, radius, "rgba(245,245,245,0.6)");
+    //             //document.getElementById('currentclockcanvas').style.display="block";
+    //             fadeIn = true;
+    //         }
+    //     }
+    // } else {
+        createCenter(canvas, lineWidth, lineWidth + 1, clockColor);
+        createHand(canvas, hour * 5 + (animateDate.getMinutes() / 60) * 5, true, lineWidth, radius, clockColor);
+        createHand(canvas, animateDate.getMinutes(), false, minLineWidth, radius, clockColor);
         //writeHourNumberInClock(context, canvas, "232",radius,"IP", 12);
         //writeRomanHourNumberInClock(context, canvas, radius);
         drawHourMarkInClock(context, canvas, radius);
-    }
+    //}
 
 }
 
@@ -581,13 +627,13 @@ function writeRomanHourNumberInClock(context, canvas, radius) {
 
 
 
-function writeTimeInClock(sdate, context, canvas, radius) {
+function writeTimeInClock(sdate, context, canvas, radius, clockColor) {
 
     context.beginPath();
-    context.strokeStyle = 'white';
+    context.fillStyle = clockColor;
     //context.font="lighter 30px Source Sans Pro";//Sans Pro, Source Sans Pro, Open Sans
     context.font = Math.round(radius / 4.5) + "px " + appfont;
-    context.fillStyle = "white";
+    //context.fillStyle = clockColor;
     //var x = canvas.width/2 - (r - 10),
     //height = canvas.height/2 - 20;
     hour = sdate.getHours(),
@@ -623,8 +669,12 @@ function writeTimeInClock(sdate, context, canvas, radius) {
     context.stroke();
 }
 
-function writeInfoInClock(context, info, radius, where, size) {
+function writeInfoInClock(context, info, radius, where, size, color) {
+
     context.beginPath();
+    context.fillStyle=color;
+    //context.fillColor = color;
+
     var x = canvas.width / 2;
     info = info.toUpperCase();
     var gap = 0;
@@ -655,10 +705,13 @@ function writeInfoInClock(context, info, radius, where, size) {
         height = canvas.height / 2 + radius + gap;
     }
     var infoWidth = context.measureText(info).width;
-    context.shadowColor = '#333';
-    context.shadowBlur = 10;
-    context.shadowOffsetX = 5;
-    context.shadowOffsetY = 5;
+
+    // To put shadow for clock circle, hour hand and time.
+
+    // context.shadowColor = '#333';
+    // context.shadowBlur = 10;
+    // context.shadowOffsetX = 5;
+    // context.shadowOffsetY = 5;
 
     context.fillText(info, x - (infoWidth / 2), height);
 
@@ -1710,9 +1763,9 @@ function initApp() {
         //var timefolder="http://localcaravan.com/prayertime/devon/";
         //$.getScript(timefolder+"/time.json", function(){
         setupApp();
+        animateloop = setInterval(createClockAnimation, 15);
         loop = setInterval(refreshClock, 1000 * 1);
         // loop = setInterval(refreshClockTab, 1000*1);
-        animateloop = setInterval(createClockAnimation, 15);
         //});
 
         //setupApp();
