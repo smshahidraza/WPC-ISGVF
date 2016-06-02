@@ -1013,10 +1013,13 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     console.log("Month:" + monthNum + "Year:" + yearNumSetting);
 
     //console.log(todayDate.getMonth()+1+", " + getDaysInMonth(todayDate.getMonth()+1, todayDate.getFullYear())+", " + todayDate.getFullYear());
-    var monthTime = "<h2 data-animation='animated bounceInLeft'>" + todayDate.getMonthName().toUpperCase() + ", " + todayDate.getFullYear() + "<h3>";
+    var monthTime = "<h2 data-animation='animated bounceInLeft'> IQAMAH TIMES - " + todayDate.getMonthName().toUpperCase() + ", " + todayDate.getFullYear() + "<h3>";
     monthTime += "<table style='width:100%' border='0' class='weektime' id='settingbody' summary='Time Setting'><thead><tr class='monthprayer-time-th'>";
     //monthTime +="<th  style='font-size:18px; text-align:left' colspan='4'>"+todayDate.getMonthName()+", "+todayDate.getFullYear()+"</th><th  scope='col'></th><th  scope='col' style='font-size:22px'><a href='#' onclick='closesetting();return false;''>x</a></th></tr></thead><tbody>";
-    monthTime += "<th  scope='col'></th><th  scope='col'>DATES</th><th  scope='col'>FAJR</th><th  scope='col'>DHUHR</th><th  scope='col'>ASR</th><th  scope='col'>MAGHRIB</th><th  scope='col'>ISHA</th></tr></thead><tbody>";
+    monthTime += "<th  scope='col'></th><th  scope='col'>DATES</th><th  scope='col'>FAJR<sup>*</sup><span style='font-size:12px'>&nbsp; ( AM )<span></th>"+
+                 "<th  scope='col'>DHUHR<span style='font-size:12px'>&nbsp; ( PM )<span></th><th  scope='col'>ASR<span style='font-size:12px'>&nbsp; ( PM )<span></th>"+
+                 "<th  scope='col'>MAGHRIB<span style='font-size:12px'>&nbsp; ( PM )<span></th>"+
+                 "<th  scope='col'>ISHA<span style='font-size:12px'>&nbsp; ( PM )<span></th></tr></thead><tbody>";
 
     //"IMASK &nbsp; FAJR &nbsp; Sunrise &nbsp; Dhuhr &nbsp; Asr &nbsp; Sunset &nbsp; Maghrib &nbsp; Isha &nbsp; Midnight </br>";
     var startDay; //monthBegin;
@@ -1166,6 +1169,9 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
         monthBegin.setDate(monthBegin.getDate() + 1);
     }
     //console.log(monthTime);
+    monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='text-align:left;font-size:20px'>* Fajr Iqamah on Weekend –30  Min. before Sunrise </td>"+
+             "<td>Jumma Salah</td><td>1<sup>st</sup></br> 1:00 PM</td><td>2<sup>nd</sup> </br> 2:00 PM</td></tr>";
+
     monthTime += "</tbody></table>";
     //document.getElementById("clockBody").style.display="none";
     document.getElementById("week-time").style.display = "block";
@@ -1209,19 +1215,18 @@ function loadRamadanCalendar(ramdanBeginTime) {
     //     todayDate.setYear(yearNumSetting);
     //}
 
-    var monthBegin = new Date(todayDate.getFullYear(), todayDate.getMonth(), 10);
+    var monthBegin = new Date(todayDate.getFullYear(), 5, 6);
 
     
-    var monthEnd = new Date(todayDate.getFullYear(), todayDate.getMonth(), (getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear()))/2);
+    var monthEnd = new Date(todayDate.getFullYear(), 5, (getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear()))/2);
     monthEnd.setDate(monthBegin.getDate() + 29);
 
     //console.log("Month:" + monthNum + "Year:" + yearNumSetting);
 
     //console.log(todayDate.getMonth()+1+", " + getDaysInMonth(todayDate.getMonth()+1, todayDate.getFullYear())+", " + todayDate.getFullYear());
-    var monthTime = "<h2 data-animation='animated bounceInLeft'>" + todayDate.getMonthName().toUpperCase() + ", " + todayDate.getFullYear() + "<h3>";
-    monthTime += "<table style='float:left;width:48%;font-size: 17px;' border='0' class='ramdantime' id='settingbody' summary='Time Setting'><thead><tr class='ramdan-time-th'>";
-    //monthTime +="<th  style='font-size:18px; text-align:left' colspan='4'>"+todayDate.getMonthName()+", "+todayDate.getFullYear()+"</th><th  scope='col'></th><th  scope='col' style='font-size:22px'><a href='#' onclick='closesetting();return false;''>x</a></th></tr></thead><tbody>";
-    monthTime += "<td  scope='col'></td><td  scope='col'>Day</td><td  scope='col'>Ramadan</td><td  scope='col'>"+monthBegin.getShortMonthName()+"-<br>"+ monthEnd.getShortMonthName()+"</td><td  scope='col'>IMASK</td><td  scope='col'>Iftar</td></tr></thead><tbody>";
+    var monthTime = "<h2 data-animation='animated bounceInLeft'> RAMADAN, "  + todayDate.getFullYear() + "<h3>";
+    monthTime += "<table style='float:left;width:48%;font-size: 20px;' border='0' class='ramdantime' id='settingbody' summary='Time Setting'><thead><tr class='ramdan-time-th'>";
+    monthTime += "<td  scope='col'></td><td  scope='col'>Day</td><td  scope='col'>Ramadan</td><td  scope='col'>"+monthBegin.getShortMonthName()+"-"+ monthEnd.getShortMonthName()+"</td><td  scope='col'>IMASK<span style='font-size:12px'>&nbsp; ( AM )<span></td><td  scope='col'>Iftar <span style='font-size:12px'>&nbsp; ( PM )<span></td></tr></thead><tbody>";
 
     //"IMASK &nbsp; FAJR &nbsp; Sunrise &nbsp; Dhuhr &nbsp; Asr &nbsp; Sunset &nbsp; Maghrib &nbsp; Isha &nbsp; Midnight </br>";
     var startDay; //monthBegin;
@@ -1304,8 +1309,8 @@ function loadRamadanCalendar(ramdanBeginTime) {
 
             if(fastingDay === 16){
                  monthTime += "</tbody></table>";
-                 monthTime += "<table style='float:right; width:48%;font-size: 17px;' border='0' class='ramdantime' id='settingbody' summary='Time Setting'><thead><tr class='ramdan-time-th'>";
-                 monthTime += "<td  scope='col'></td><td  scope='col'>Day</td><td  scope='col'>June</td><td  scope='col'>Ramadan</td><td  scope='col'>IMASK</td><td  scope='col'>Iftar</td></tr></thead><tbody>";
+                monthTime += "<table style='float:right;width:48%;font-size: 20px;' border='0' class='ramdantime' id='settingbody' summary='Time Setting'><thead><tr class='ramdan-time-th'>";
+                monthTime += "<td  scope='col'></td><td  scope='col'>Day</td><td  scope='col'>Ramadan</td><td  scope='col'>"+monthBegin.getShortMonthName()+"-"+ monthEnd.getShortMonthName()+"</td><td  scope='col'>IMASK<span style='font-size:12px'>&nbsp; ( AM )<span></td><td  scope='col'>Iftar<span style='font-size:12px'>&nbsp; ( PM )<span></td></tr></thead><tbody>";
                 rowNumber = 1;
             }
     }
