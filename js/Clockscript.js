@@ -287,6 +287,20 @@ function refreshClock() {
         if (formDateToStringHMMA(clocksArray[0][currentPrayerIndex].time) === formDateToStringHMMA(todayDate) ) {
             //currentPrayerTime = true;
             //        color="red";
+
+            /**
+                Stop sliding if it is the time of prayer and fixed the slide on
+                prayer time page.
+            */
+            if (clockSetting.isSlidingOn()) {
+                $('#myCarousel').carousel({
+                    interval: false
+                });
+                $('#myCarousel').carousel(0);
+                
+            }
+
+
             var currentClockPrayerBlink =$("#" + currentCanvasName)[0].getContext('2d');
 
             //currentClockPrayerBlink.clearRect(0, 0, currentClockPrayerBlink.canvas.width, currentClockPrayerBlink.canvas.height);
@@ -337,6 +351,8 @@ function refreshClock() {
         if (formDateToStringHMMA(currDateForAnim) === formDateToStringHMMA(currTimeForAnim)) {
             console.log("Matched...");
             animateloop = setInterval(createClockAnimation, 15);
+           // setupSlider();
+            $('#myCarousel').carousel('cycle');
         }
     }
 
