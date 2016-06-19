@@ -35,6 +35,7 @@ html,
 body {
   height: 100%;
   background-color: #333;
+ 
 }
 body {
   color: #fff;
@@ -44,7 +45,7 @@ body {
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
-   //background: url(../images/bg14.png) no-repeat center center fixed; 
+   background: url(../images/bg14.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -53,7 +54,7 @@ body {
   width: 100%;
   height: 100%; /* For at least Firefox */
   min-height: 100%;
-  background-color: #478551
+  // background-color: #478551
 
 }
 .site-wrapper-inner {
@@ -92,7 +93,7 @@ body {
   background:rgba(255, 255, 255, 0.80);
   font-weight: bold;
   //color: #484646;
-  color:#CB0000;
+  color:#333;
   font-size: 25px;
   text-shadow:none;
   //margin-left: 10px;
@@ -120,6 +121,7 @@ body {
 .header-subtitle{
     margin-top: -17px;
     font-size: 25px;
+    padding-left:65px;
     //font-family: isgvf-font;
 }
 
@@ -272,9 +274,9 @@ body {
 }
 
 .clock-div {
-  background:rgba(29, 29, 29, 0.4);
+  // background:rgba(29, 29, 29, 0.4);
   
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  // box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
   //margin-top: -40px;
 }
 .weektime th, td, tr {

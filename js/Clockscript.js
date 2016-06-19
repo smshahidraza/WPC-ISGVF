@@ -14,7 +14,7 @@ lowerbase5context = lowerbase5canvas.getContext('2d');
 
 
 
-//var appfont = "isgvf-font";
+// var appfont = "isgvf-font";
 var appfont = "Helvetica Neue,Helvetica,Arial,sans-serif";
 
 var currentDate;
@@ -125,7 +125,7 @@ function createCenter(mycanvas, mylineWidth, radius, color) {
     mycontext.fill();
 }
 
-function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWidth, context, darwArrow) {
+function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWidth, context, darwArrow, clockColor) {
     context.beginPath();
     context.strokeStyle = clockColor;
     var stAngle = convertTimeToRadianAngle(startTime),
@@ -138,7 +138,7 @@ function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWid
         stAngle1 = convertTimeToRadianAngle(sdate1), //(Math.PI * 2) * (sLoc / 60) - Math.PI / 2;
         enAngle2 = convertTimeToRadianAngle(sdate3); //(Math.PI * 2) * (eLoc / 60) - Math.PI / 2;
 
-    context.fillSyle = 'blue';
+    // context.fillSyle = 'blue';
     context.lineWidth = 3;
 
     if (darwArrow) {
@@ -154,22 +154,22 @@ function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWid
     }
     context.stroke();
     context.beginPath();
-    context.lineWidth = lineWidth;
-    context.strokeStyle = timeLimitArcColor;
+    context.lineWidth = lineWidth + 3;
+    context.strokeStyle = clockColor;
 
     /**
      *  Below four line to create a shadow effect. Save the previous setting
      *  of context here to restore it after drawing arc. This will help us
      *  to limit shadow effect only for the arc.
      */
-    context.save();
-    context.shadowColor = 'white';
-    context.shadowBlur = 40;
-    context.shadowOffsetX = 0;
-    context.shadowOffsetY = 0;
+    // context.save();
+    // context.shadowColor = 'white';
+    // context.shadowBlur = 40;
+    // context.shadowOffsetX = 0;
+    // context.shadowOffsetY = 0;
 
     context.arc(canvas.width / 2, canvas.height / 2, radius, stAngle, enAngle, true);
-    context.fillSyle = '#FF3300';
+    context.fillSyle = clockColor;
     context.stroke();
     context.restore();
 }
@@ -231,7 +231,7 @@ function createClockAnimation(canvasIndexPassed) {
             }
 
             radius = canvas.width / 2 - canvas.width / 12;
-            lineWidth = 3;
+            lineWidth = 1;
             isSmallClock = true;
             canvasIndex++;
         //}
@@ -409,7 +409,7 @@ function refreshClock() {
                     var canvasName = 'lowerbase' + canvasIndex + 'canvas';
                     if (getCurrentPrayerTime().name == clocksArray[0][index].name) {
                         //$("#clock"+canvasIndex).css("padding-top","10px");
-                        $("#" + canvasName).css("background", "rgba(255,207,0,0.6)");
+                        $("#" + canvasName).css("background", "rgba(211,211,211,0.53)");
                         $("#" + canvasName).css("border-bottom", "3px solid white");
 
                         color = clockColorCurrent;
@@ -496,10 +496,10 @@ function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, r
     //console.log(canvas.width+":"+canvas.height+","+radius);
     if (!isSmallClock) {
         createCircle(canvas, minLineWidth - 1, radius, color);
-        createTimeLimitArc(animateDate, sdate, edate, next, radius + 2, minLineWidth, context, true);
+        createTimeLimitArc(animateDate, sdate, edate, next, radius + 2, minLineWidth, context, true, clockColor);
         writeTimeInClock(animateDate, context, canvas, radius, clockColor);
 
-        context.font = "lighter 20px Source Sans Pro";
+         context.font = "lighter 20px "+ appfont;
         writeInfoInClock(context, clockTitle + " - " + currentTime, radius + 15, 'UP', 'BIG',clockColor);
         //writeInfoInClock(context,"Prayer time is not updated.", radius+15,'UP', 'BIG');
         writeInfoInClock(context, name, radius + 15, 'DOWN', 'BIG',clockColor);
@@ -507,9 +507,9 @@ function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, r
     } else {
         createCircle(canvas, lineWidth, radius + 5, clockColor);
 
-        //createTimeLimitArc(animateDate, sdate, edate, next, radius+5, minLineWidth, context, true);
+         createTimeLimitArc(animateDate, sdate, edate, next, radius+5, minLineWidth, context, true, clockColor);
         createCenter(canvas, lineWidth, lineWidth + 1, clockColor); //2,3
-        //context.font="lighter 12px Source Sans Pro";
+        context.font="12px "+ appfont;
         var ampm = formDateToStringHMMA(animateDate).indexOf("AM");
         var info = formDateToStringHMM(animateDate);
         //console.log(formDateToStringHMMA(animateDate)+"pppp"+ampm);
@@ -550,7 +550,7 @@ function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, r
         createHand(canvas, animateDate.getMinutes(), false, minLineWidth, radius, clockColor);
         //writeHourNumberInClock(context, canvas, "232",radius,"IP", 12);
         //writeRomanHourNumberInClock(context, canvas, radius);
-        drawHourMarkInClock(context, canvas, radius);
+        // drawHourMarkInClock(context, canvas, radius);
     //}
 
 }
@@ -753,7 +753,7 @@ function writeAMPMfterTimeVertical(context, info, ampm) {
     var height = canvas.height / 2 + radius + gap;
     var infoWidth = context.measureText(info).width;
     var fontsize = Math.round(radius / 3 * 0.4);
-    context.font = fontsize + "px Calibri";
+    context.font = fontsize + "px "+ appfont;
     var achar = "A";
     var aWidth = context.measureText(achar).width;
 
@@ -866,12 +866,12 @@ function setupSlider() {
         if (currentIndex == 1) {
             $("#utilityfooter").fadeIn("slow");
             // $("#utilityfooter").show();
-            $("#iqama-time").show();
+            // $("#iqama-time").show();
 
         } else {
             $("#utilityfooter").fadeOut("slow");
             // $("#utilityfooter").hide();  
-            $("#iqama-time").hide();
+            // $("#iqama-time").hide();
         }
 
     });
@@ -1134,7 +1134,7 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
 
             if (nofd >= 0 && nofd <= 6) {
                 //background = "background:rgba(0,172,193,0.3)";
-                 background = "background:rgba(255, 207, 0, 0.6);color:rgb(46, 49, 46);text-shadow:none";
+                 background = "background:rgba(211,211,211, 0.6);color:rgb(46, 49, 46);text-shadow:none";
                 
                  //arrow = "&#8594;";
                  arrow = "class='glyphicon glyphicon-arrow-right'";
@@ -1294,7 +1294,7 @@ function loadRamadanCalendar(ramdanBeginTime) {
             
             if (currentDate.getDate() == monthBegin.getDate()) {
                 //background = "background:rgba(0,172,193,0.3)";
-                 background = "background:rgba(255, 207, 0, 0.6);color:rgb(46, 49, 46);text-shadow:none";
+                 background = "background:rgba(211,211,211, 0.6);color:rgb(46, 49, 46);text-shadow:none";
                 
                  //arrow = "&#8594;";
                  arrow = "class='glyphicon glyphicon-arrow-right'";
