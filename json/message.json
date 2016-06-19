@@ -2,7 +2,7 @@
      prayerTimeMessage =  
     [ {"date":"DEFAULT", "message": [{ "show":"yes", "text":"Press F11 to view it in full screen...The arc on clock is showing the time variation for any prayer time during a year... Indicator (an arrow mark, hyphen) indicates the next day time change..."}]},
       {"date":"21MAR", "message":{"show":"no", "text":"20 March 2016"}}, 
-      {"date":"Thursday", "time":"12:00PM-02:00PM", "message":{"show":"yes",  "text":"Thursday"}},
+      {"date":"Thursday", "time":"12:00PM-02:00PM", "message":{"show":"no",  "text":"Thursday"}},
       {"date":"Sunday", "time":"11:00AM-03:00PM", "message":{"show":"no",  "text":"Sunday shool drop-off time start at 11:00 AM and pickup time is at 03:00 PM "}}
   	];
 
