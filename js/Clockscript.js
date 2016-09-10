@@ -176,7 +176,7 @@ function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWid
 
 function createClockAnimation(canvasIndexPassed) {
 
-    console.log("Is it running..");
+   // console.log("Is it running..");
    //  return false;
     var canvasIndex = 7;
     var color;
@@ -362,10 +362,52 @@ function refreshClock() {
     
     updateTimeWidget();
     
-    
+         var currTimeForDiff = new Date();
+        if (currentPrayerIndex != -1) {
+        currTimeForDiff.setHours(clocksArray[0][currentPrayerIndex].time.getHours());
+        currTimeForDiff.setMinutes(clocksArray[0][currentPrayerIndex].time.getMinutes());
+        currTimeForDiff.setSeconds(0);
+        }
 
     var currentPrayerName  = getCurrentPrayerTime().name;
-    console.log("Upcoming prayer :"+currentPrayerName+ " -- currentTimeChanged  ::" + currentTimeChanged);
+    // var time = formDateToStringHMMA(fromFloatTimeToDateObject(getCurrentPrayerTime().time, todayDate));
+    // var upcomingTime = new Date();
+    // upcomingTime.setTime(fromFloatTimeToDateObject(getCurrentPrayerTime().time, todayDate).getTime() - todayDate.getTime());
+
+    if (currTimeForDiff < todayDate ) {
+        currTimeForDiff.setDate(todayDate.getDate() + 1);
+    }
+
+
+    var diff = currTimeForDiff - todayDate;
+
+    if(Math.floor(diff/ 1000 / 60 / 60) > 12) {
+        diff = 0;
+    }
+
+    var msec = diff;
+    var hh = Math.floor(msec / 1000 / 60 / 60);
+    msec -= hh * 1000 * 60 * 60;
+   if (hh < 10 ) {
+        hh="0"+hh;
+    }
+    var mm = Math.floor(msec / 1000 / 60);
+    msec -= mm * 1000 * 60;
+    if (mm < 10 ) {
+        mm="0"+mm;
+    }
+    var ss = Math.floor(msec / 1000);
+    if(ss < 10 ) {
+        ss="0"+ss;
+    }
+
+
+
+
+//    $('#upcoming-time').text("Upcoming Prayer: "+ currentPrayerName+ ":"+time+":"+formDateToStringHMMA(todayDate)+"-" + formDateToStringHMMA(upcomingTime));
+    $('#upcoming-time').html("<font size='3'>UPCOMING PRAYER&nbsp;</font>"+ currentPrayerName.toUpperCase()+"-" + hh+":"+mm+":"+ss);
+
+//     console.log("Upcoming prayer :"+currentPrayerName+ ":"+time+" -- currentTimeChanged  :::" + getCurrentPrayerTime().time);
     if (settingmode == false) {
         if (currentTimeChanged) {
             clocksArray[0].CURRENT.name =  currentPrayerName;
@@ -485,7 +527,7 @@ function createHands(mycanvas, date, radius, lineWidth, clockHandColor) {
 
 function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, radius, isSmallClock, clockColor) {
 
-    console.log("Inside CLock createClock::");
+    //console.log("Inside CLock createClock::");
     var minLineWidth = (lineWidth > 3) ? lineWidth - 2 : lineWidth;
     var context = canvas.getContext("2d");
     //console.log(canvas);
@@ -862,7 +904,7 @@ function setupSlider() {
 
 
         var currentIndex = $('div.active').index() + 1;
-        console.log("currentIndex:" + currentIndex);
+        // console.log("currentIndex:" + currentIndex);
         if (currentIndex == 1) {
             $("#utilityfooter").fadeIn("slow");
             // $("#utilityfooter").show();
@@ -1575,6 +1617,7 @@ function createUtilityIcon() {
     var lowerbase2context = lowerbase2canvas.getContext('2d');
     $('#lowerbase2canvas').attr('width', 250); //max width
 
+    // var hijriDate = getHijriDate(currentDate);
     createDummyMoonIcon(lowerbase2context, lowerbase2canvas, GregToIsl(currentDate, 'US', clockSetting.getHijriAdjustmentDay()));
 
     /*
@@ -1772,6 +1815,7 @@ function updateTimeWidget() {
         createCurrTimeBlock(timecontext, timecanvas);
 
 
+
         //$("#currtime").text(crTime);
     }
     //context.font = font + 'px Source Sans Pro';
@@ -1796,7 +1840,12 @@ function initApp() {
         //loop = setInterval(refreshClock, 1000*1);
         //createClockAnimation();
         //animateloop = setInterval(createClockAnimation, 15);
+        
+
 
     }
     //loop = setInterval(refreshClock, 1000*60);
     //animateloop = setInterval(createClockAnimation, 15);
+    function loadFullScreen(){
+        toggleFull();
+    }

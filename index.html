@@ -24,17 +24,21 @@
       <![endif]-->
    </head>
    <body>
-      <div class="site-wrapper">
+      <div class="site-wrapper" >
          <div class="site-wrapper-inner">
             <div class="cover-container">
                <div class="masthead clearfix">
-                  <div class="inner-top">
-                     <div class="masthead-brand"><img src="images/isgvf-logo-white-1.png" alt="ISGV Logo" style="width:150px;height:75px;"></div>
-                     <nav>
-                        <div id="header-title" class="header-title"></div>
-                        <div id="header-subtitle" class="header-subtitle"></div>
-                     </nav>
-                     <div id="iqama-time" class="iqama-time"> IQAMAH TIME </div>
+                  <div class="inner-top" >
+                     <div class="masthead-brand" ><img src="images/isgvf-logo-white-1.png" alt="ISGV Logo" style="width:150px;height:75px;"></div>
+                     
+                     <nav onmouseover="" onmouseout="">
+                        <div class="header-title">
+                            <span id="header-title"></span>
+                            <span id="user-action" onclick="loadFullScreen()"  class="glyphicon glyphicon-resize-full" style="display:none;cursor:pointer;padding-left:5px;font-size:20px"></span>
+                        </div>
+                        <div id="header-subtitle" class="header-subtitle"></div>                   
+                     </nav>                      
+                     <div id="iqama-time" class="iqama-time"> <div style="float:left;padding-left:10px" >IQAMAH TIME</div><div  style="text-align:right;padding-right:10px"><div id="upcoming-time" ></div></div> </div>
                   </div>
                </div>
                <div id="myCarousel" class="carousel slide" >
@@ -169,6 +173,7 @@
           initApp();
           reponsdFooterCanvas(appWidth, appHight);
           refreshClock(7);
+
               //
          });
          
@@ -198,6 +203,28 @@
          
          
          }
+
+        function loadFullScreen(){
+
+          //var elem = document.body; // Make the body go full screen.
+          //console.log("loadfullscreen:::"+elem);
+          //requestFullScreen(elem);
+          // $("i").toggleClass("fa fa-expand fa fa-compress");
+          toggleFull();
+
+        }
+
+          function showControl(){
+            $("#user-action").fadeIn("slow");
+            $("#user-action").show();
+          }
+
+          function hideControl(){
+
+            $("#user-action").fadeOut("slow");
+            $("#user-action").hide();
+
+          }
          
          
          

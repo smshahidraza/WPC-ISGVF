@@ -1148,6 +1148,43 @@ function createDummyMoonIcon(mycontext,mycanvas,lunarDate){
     
 }
 
+function getHijriDate(currdate) {
+
+  // var url = "http://www.islamicfinder.org/dateconvertor/convertdate?day=25&month=7&year=2016&dateType=Gregorian";
+  //   $.getJSON( url, {
+  //     tags: "islamic finder",
+  //     tagmode: "any",
+  //     format: "json"
+  //   })
+  //   .done(function( data ) {
+  //     console.log(data.hijriDate + ":::" + data.hijriMonth);
+  //   });
+
+
+    // Using YQL and JSONP
+    $.ajax({
+        url: "http://www.islamicfinder.org/dateconvertor/convertdate?day=25&month=7&year=2016&dateType=Gregorian",
+     
+        // The name of the callback parameter, as specified by the YQL service
+        jsonp: "callback",
+     
+        // Tell jQuery we're expecting JSONP
+        dataType: "json",
+     
+        // Tell YQL what we want and that we want JSON
+        data: {            
+            format: "json"
+        },
+     
+        // Work with the response
+        success: function( response ) {
+            conosle.log("URL:" + url);
+            console.log(JSON.stringify(response)); // server response
+        }
+    });
+
+}
+
 function createRightArrow(mycontext, mycanvas, colorName){
 
   mycontext.clearRect(0, 0, mycanvas.width, mycanvas.height);
@@ -1416,4 +1453,41 @@ function writeAMPMfterTime(context, info,radius,ampm){
 
 }
 
+function cancelFullScreen(el) {
+    var requestMethod = el.cancelFullScreen||el.webkitCancelFullScreen||el.mozCancelFullScreen||el.exitFullscreen;
+    if (requestMethod) { // cancel full screen.
+        requestMethod.call(el);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+}
 
+function requestFullScreen(el) {
+    // Supports most browsers and their versions.
+    var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+
+    if (requestMethod) { // Native full screen.
+        requestMethod.call(el);
+    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+    return false
+}
+
+function toggleFull() {
+    var elem = document.body; // Make the body go full screen.
+    var isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||  (document.mozFullScreen || document.webkitIsFullScreen);
+
+    if (isInFullScreen) {
+        cancelFullScreen(document);
+    } else {
+        requestFullScreen(elem);
+    }
+    return false;
+}
