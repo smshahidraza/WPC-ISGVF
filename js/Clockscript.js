@@ -499,7 +499,7 @@ function createHand(mycanvas, loc, isHour, width, radius, color) {
         angle = (Math.PI * 2) * (loc / 60) - Math.PI / 2,
         handRadius = isHour ? radius - x - Hx : radius - x;
     mycontext.beginPath();
-    mycontext.lineWidth = 10;
+    mycontext.lineWidth = 11;
     // mycontext.strokeStyle = color;
     mycontext.globalAlpha=0.7;
 
