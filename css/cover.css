@@ -55,12 +55,23 @@ body {
   height: 100%; /* For at least Firefox */
   min-height: 100%;
   background-color: #478551;
-  // background-image: url('../images/bg-blue.jpg')
+  // background-image: url('../images/bg-blue.jpg');
+  background-image: url(../images/ISGVF_1.jpg);
+  // overflow: hidden;
+  color: #FFFFFF
 
 }
 .site-wrapper-inner {
   display: table-cell;
   vertical-align: top;
+    background: -webkit-linear-gradient(-90deg, rgba(39,62,84,0.82),rgba(255,0,0,0.3)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(-90deg, rgba(39,62,84,0.82),rgba(255,0,0,0.3)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, rgba(39,62,84,0.82),rgba(255,0,0,0.3)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, rgba(47, 93, 63, 0.82),#478551); /* Standard syntax */
+      // background: rgba(39,62,84,0.82);
+    overflow: hidden;
+    height: 100%;
+    z-index: 2;
 }
 .cover-container {
   margin-right: auto;
