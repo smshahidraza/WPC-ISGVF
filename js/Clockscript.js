@@ -1618,7 +1618,13 @@ function createUtilityIcon() {
     $('#lowerbase2canvas').attr('width', 250); //max width
 
     // var hijriDate = getHijriDate(currentDate);
-    createDummyMoonIcon(lowerbase2context, lowerbase2canvas, GregToIsl(currentDate, 'US', clockSetting.getHijriAdjustmentDay()));
+    var cal = new UQCal(currentDate);
+    var hijri = cal.convert();
+    // console.log("Hijri date new "+ hijri.Hday+"::"+hijri.Hmonth+"::"+hijri.Hyear );
+
+    // console.log("Old:" + GregToIsl(currentDate, 'US', clockSetting.getHijriAdjustmentDay()));
+
+    createDummyMoonIcon(lowerbase2context, lowerbase2canvas,  hijri.Hday+"::"+hijri.Hmonth+"::"+hijri.Hyear);
 
     /*
         var iqamatimeCanavas = document.getElementById('iqamatime');

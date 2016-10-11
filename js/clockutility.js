@@ -1137,7 +1137,7 @@ function createDummyMoonIcon(mycontext,mycanvas,lunarDate){
 
     fontsize = Math.round(radius*1.5);
     mycontext.font=fontsize+"px "+isgvffont; //Georgia
-    var ddMM = lunarDateArr[1];
+    var ddMM = HijriNames[lunarDateArr[1] - 1];
     timeWidth = mycontext.measureText(ddMM).width;
     mycontext.fillText(ddMM,mycanvas.width/2 - timeWidth/2, mycanvas.height/2 + mycanvas.height*0.09);
     // //todayDate = sunRisetime.getTime();
