@@ -1196,26 +1196,6 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     //settingmode = true;
 }
 
-function getLastDayOfMonth(month, year, dayNum) {
-    //monthNum = monthNumSetting;
-    //yearNumSetting = _yearNumSetting;
-    var todayDate = new Date();
-    //var crdate = new Date();
-
-    //todayDate.setDate(1);
-    todayDate.setMonth(month);
-    todayDate.setYear(year);
-
-    var monthEnd = new Date(todayDate.getFullYear(), todayDate.getMonth(), getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear()));
-
-    while (monthEnd.getDay() != dayNum) {
-        monthEnd = new Date(monthEnd.setDate(monthEnd.getDate() - 1));
-
-    }
-
-    return monthEnd;
-}
-
 function loadRamadanCalendar(ramdanBeginTime) {
     //monthNum = 0;
     //monthNum = monthNumSetting;
@@ -1415,7 +1395,7 @@ function getLastDayOfMonth(month, year, dayNum) {
     var todayDate = new Date();
     //var crdate = new Date();
 
-    //todayDate.setDate(1);
+    todayDate.setDate(1);
     todayDate.setMonth(month);
     todayDate.setYear(year);
 
