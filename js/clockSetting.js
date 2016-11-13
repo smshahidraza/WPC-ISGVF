@@ -30,6 +30,10 @@ function ClockSetting(method) {
 			}
 		},
 
+		isTimeLimitArcOn(){
+			return this.getPrayerClockSetting()[9].timelimitArc === "on";						
+		},
+
 		getPrayerClockMessage: function(){
 			var messageObject = prayerTimeMessage;
 			return messageObject;

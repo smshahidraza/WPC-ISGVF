@@ -22,7 +22,8 @@ var settingmode = false;
 var monthNum, yearNumSetting;
 
 var timeLimitArcColor = "#00ACC1"; //"#0099CC";
-var timeLimitArcColorRGB = "rgba(0,172,193,0.7)";
+var timeLimitArcColorRGB = "rgba(255,69,0,1)";
+// FF4500
 var clockColorCurrent = "#333";
 var clockColor = "white";
 var handColorTransparent = "rgba(245,245,245,0.7)";
@@ -125,7 +126,7 @@ function createCenter(mycanvas, mylineWidth, radius, color) {
     mycontext.fill();
 }
 
-function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWidth, context, darwArrow) {
+function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWidth, context, darwArrow, clockColor) {
     context.beginPath();
     context.strokeStyle = clockColor;
     var stAngle = convertTimeToRadianAngle(startTime),
@@ -138,7 +139,7 @@ function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWid
         stAngle1 = convertTimeToRadianAngle(sdate1), //(Math.PI * 2) * (sLoc / 60) - Math.PI / 2;
         enAngle2 = convertTimeToRadianAngle(sdate3); //(Math.PI * 2) * (eLoc / 60) - Math.PI / 2;
 
-    context.fillSyle = 'blue';
+    // context.fillSyle = 'blue';
     context.lineWidth = 3;
 
     if (darwArrow) {
@@ -154,24 +155,25 @@ function createTimeLimitArc(givenTime, startTime, endTime, next, radius, lineWid
     }
     context.stroke();
     context.beginPath();
-    context.lineWidth = lineWidth;
-    context.strokeStyle = timeLimitArcColor;
+    context.lineWidth = 5;
+    context.strokeStyle = clockColor;
 
     /**
      *  Below four line to create a shadow effect. Save the previous setting
      *  of context here to restore it after drawing arc. This will help us
      *  to limit shadow effect only for the arc.
      */
-    context.save();
-    context.shadowColor = 'white';
-    context.shadowBlur = 40;
-    context.shadowOffsetX = 0;
-    context.shadowOffsetY = 0;
+    // context.save();
+    // context.shadowColor = 'white';
+    // context.shadowBlur = 40;
+    // context.shadowOffsetX = 0;
+    // context.shadowOffsetY = 0;
 
     context.arc(canvas.width / 2, canvas.height / 2, radius, stAngle, enAngle, true);
-    context.fillSyle = '#FF3300';
     context.stroke();
-    context.restore();
+    // context.strokeStyle = clockColor;
+    // context.stroke();
+    // context.restore();
 }
 
 function createClockAnimation(canvasIndexPassed) {
@@ -500,7 +502,7 @@ function createHand(mycanvas, loc, isHour, width, radius, color) {
         handRadius = isHour ? radius - x - Hx : radius - x;
     mycontext.beginPath();
     mycontext.lineWidth = 11;
-    // mycontext.strokeStyle = color;
+    mycontext.strokeStyle = color;
     mycontext.globalAlpha=0.7;
 
     if (!isHour) {
@@ -538,7 +540,7 @@ function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, r
     //console.log(canvas.width+":"+canvas.height+","+radius);
     if (!isSmallClock) {
         createCircle(canvas, minLineWidth - 1, radius, color);
-        createTimeLimitArc(animateDate, sdate, edate, next, radius + 2, minLineWidth, context, true);
+        createTimeLimitArc(animateDate, sdate, edate, next, radius + 2, minLineWidth, context, true, timeLimitArcColorRGB);
         writeTimeInClock(animateDate, context, canvas, radius, clockColor);
 
         context.font = "lighter 20px Source Sans Pro";
@@ -549,7 +551,9 @@ function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, r
     } else {
         createCircle(canvas, lineWidth, radius + 5, clockColor);
 
-        //createTimeLimitArc(animateDate, sdate, edate, next, radius+5, minLineWidth, context, true);
+        if(clockSetting.isTimeLimitArcOn()){
+        		createTimeLimitArc(animateDate, sdate, edate, next, radius+5, minLineWidth, context, true, timeLimitArcColorRGB);
+        }
         createCenter(canvas, lineWidth, lineWidth + 1, clockColor); //2,3
         //context.font="lighter 12px Source Sans Pro";
         var ampm = formDateToStringHMMA(animateDate).indexOf("AM");

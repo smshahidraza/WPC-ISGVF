@@ -6,18 +6,19 @@
 		{ "address":"958 N Valley Forge Road Devon, PA-19333,"},
 		{"phone":"(610) 688-2209"},
 		{"website":"www.isgvf.org"},
-		{"juma1":"1:00"},
-		{"juma2":"2:00"},
-		{"slider":"on"}, // Values [on, off]
+		{"juma1":"12:30"},
+		{"juma2":"1:30"},
+		{"slider":"off"}, // Values [on, off]
 		{"hijriAdjustDay":3}, // Values [1,2,3,0,-1,-2,-3]
-		{"messageseparator":"..."} // Values ["|",",","...","."] Any keyboard character can be used as a message separator.
+		{"messageseparator":"..."}, // Values ["|",",","...","."] Any keyboard character can be used as a message separator.
+		{"timelimitArc":"off"} // Values [on, off]
 	],
 
 	"SLIDER" :
 	[
 		{"type":"dailytime", "show": "yes", "delayinsec":"3"}, // Do not remove this line.
-		{"type":"monthtime", "show": "no", "delayinsec":"3"}, // Do not remove this line.
-		{"type":"ramadantime", "show": "yes", "delayinsec":"300"}, // Do not remove this line.
+		{"type":"monthtime", "show": "yes", "delayinsec":"3"}, // Do not remove this line.
+		{"type":"ramadantime", "show": "no", "delayinsec":"300"}, // Do not remove this line.
 		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/isgvf_poster.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/enter.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/exit.jpg"},
