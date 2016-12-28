@@ -1079,7 +1079,7 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     monthTime += "<table style='width:100%' border='0' class='weektime' id='settingbody' summary='Time Setting'><thead><tr class='monthprayer-time-th'>";
     //monthTime +="<th  style='font-size:18px; text-align:left' colspan='4'>"+todayDate.getMonthName()+", "+todayDate.getFullYear()+"</th><th  scope='col'></th><th  scope='col' style='font-size:22px'><a href='#' onclick='closesetting();return false;''>x</a></th></tr></thead><tbody>";
     monthTime += "<th  scope='col'></th><th  scope='col'>DATES</th><th  scope='col'>FAJR<sup>*</sup><span style='font-size:12px'>&nbsp; ( AM )<span></th>"+
-                 "<th  scope='col'>DHUHR<span style='font-size:12px'>&nbsp; ( PM )<span></th><th  scope='col'>ASR<span style='font-size:12px'>&nbsp; ( PM )<span></th>"+
+                 "<th  scope='col'>DHUHR<sup>**</sup><span style='font-size:12px'>&nbsp; ( PM )<span></th><th  scope='col'>ASR<span style='font-size:12px'>&nbsp; ( PM )<span></th>"+
                  "<th  scope='col'>MAGHRIB<span style='font-size:12px'>&nbsp; ( PM )<span></th>"+
                  "<th  scope='col'>ISHA<span style='font-size:12px'>&nbsp; ( PM )<span></th></tr></thead><tbody>";
 
@@ -1231,7 +1231,7 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
         monthBegin.setDate(monthBegin.getDate() + 1);
     }
     //console.log(monthTime);
-    monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'><span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br></br><span> **  Zuhr Iqamah on Weekends – 1:30 PM</span> </td>"+
+    monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'><span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br></br><span> **  Dhuhr Iqamah on Weekends – 1:30 PM</span> </td>"+
              "<td>Jumma Salah</td><td>1<sup>st</sup></br> 1:00 PM</td><td>2<sup>nd</sup> </br> 2:00 PM</td></tr>";
 
     monthTime += "</tbody></table>";
