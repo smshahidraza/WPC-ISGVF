@@ -410,6 +410,23 @@ function getDateFromDDMMM(dateString, year){
   return tempDate;
 }
 
+function getDateFromDDMMMYY(dateString) {
+  var day = parseInt( dateString.substring(0,2)),
+  month = dateString.substring(2,5),
+  year = dateString.substring(5,dateString.length);
+
+  var monthint = parseInt(months[camelCase(month)]) - 1;
+  //console.log(month +" "+day+"--"+monthint); //parseInt(months[
+  
+  var tempDate =  new Date();
+  tempDate.setDate(day);
+  tempDate.setMonth(monthint);
+  tempDate.setYear(year);
+
+  //console.log(tempDate);
+  return tempDate;
+}
+
 function camelCase(s) {
   return (s||'').toLowerCase().replace(/(\b|-)\w/g, function(m) {
     return m.toUpperCase().replace(/-/,'');

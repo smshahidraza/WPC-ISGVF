@@ -872,6 +872,14 @@ function setupSlider() {
                      ).appendTo('.carousel-inner');
 
             loadRamadanCalendar(currentDate.getMonth(),currentDate.getFullYear());
+        } else if (type === 'events') {
+			$('<div class="item" id="eventblock" data-interval="' + delay * 1000 + '">'+
+	            '<div class="container"><div class="row">'+
+	                  '<div id="event-div" class="col-lg-12 col-sm-12">'+
+	                     '<div id="event-block"></div></div>'+
+	                  '</div></div></div>'
+	         ).appendTo('.carousel-inner');
+			 loadEvents();
         } else {
             $('<div class="item" style="height:auto" data-interval="' + delay * 1000 + '"><div class="container">' +
                 '<img src="' + m[i].source + '" style="padding-top:20px;width:1100px;height:600px">' +
@@ -1432,6 +1440,81 @@ function loadRamadanCalendar(ramdanBeginTime) {
     document.getElementById("ramadan-time").style.display = "block";
 
     document.getElementById("ramadan-time").innerHTML = monthTime;
+    //settingmode = true;
+}
+
+function loadEvents() {
+    var todayDate = new Date();
+    var crdate = new Date();
+    var one_day = 1000 * 60 * 60 * 24;
+
+    var monthBegin = new Date(todayDate.getFullYear(), 5, 6);
+
+    
+    var monthEnd = new Date(todayDate.getFullYear(), 5, (getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear()))/2);
+    monthEnd.setDate(monthBegin.getDate() + 29);
+
+    //console.log("Month:" + monthNum + "Year:" + yearNumSetting);
+
+    //console.log(todayDate.getMonth()+1+", " + getDaysInMonth(todayDate.getMonth()+1, todayDate.getFullYear())+", " + todayDate.getFullYear());
+    // var monthTime = "<h3 data-animation='animated bounceInLeft'> UPCOMING EVENTS, "  + todayDate.getFullYear() + "<h3>";
+    var monthTime = "<table style='text-align:left; float:left;font-size: 25px;' border='0'  class='eventtable' id='settingbody' summary='Time Setting'><thead><tr >";
+    monthTime += "<td  colspan='4'  scope='col' style='border-bottom:0px'><h3> Upcoming Event</h3></td></tr></thead><tbody>";
+
+    //"IMASK &nbsp; FAJR &nbsp; Sunrise &nbsp; Dhuhr &nbsp; Asr &nbsp; Sunset &nbsp; Maghrib &nbsp; Isha &nbsp; Midnight </br>";
+    var startDay; //monthBegin;
+    var endDay; // = monthBegin;
+
+    var daytime = "";
+    var daytimeFriday = "";
+    var daytimeSunday = "";
+    var weekperiod = "";
+    var index = 0;
+    var rowNumber = 1;
+
+    var fastingDay = 1;
+    var events = clockSetting.getAllActiveEvents(5);
+
+    for (var i = 0 ; i < events.length; i++) {
+
+
+
+    	    var eventDate = getDateFromDDMMMYY(events[i].date);
+            weekperiod += "<td  style='padding-right:20px'><div class='scroll' style='padding:10px;font-weight:normal'><span style='font-size:50px;'>"+eventDate.getDate()+"</span><span style='font-size:25px'>"+eventDate.getShortMonthName()+"</span></br><span style='vertical-align:top;font-size:25px'>"+eventDate.getDayName()+"</span></div></td>";
+            // weekperiod += "<td style='font-size:25px'></td>";    
+            weekperiod += "<td width='120px' style='font-size:20px'>"+events[i].time+"</td>";
+            weekperiod += "<td align='left' style='font-size:25px'>"+events[i].message.title;
+            if(events[i].speaker != '') {
+            	weekperiod += "<br><span style='font-size:20px'>Speaker: "+events[i].speaker+"</span>";
+            }
+            weekperiod += "<br><span style='font-size:20px'>"+events[i].message.detail+"</span></td>";
+
+            daytime += "<tr >" + weekperiod;
+            //+daytime;
+
+            monthTime += daytime + "</tr>";
+
+            // weekperiod = "<td style='vertical-align:top;font-size:30px'></td>";
+            // weekperiod += "<td></td>";    
+            // weekperiod += "<td></td>";
+            // weekperiod += "<td style='vertical-align:top'>"+events[i].message.detail+"</td>";
+            // daytime = "<tr ><td></td>" + weekperiod;
+
+
+            // monthTime += daytime + "</tr>";
+
+            rowNumber++;
+            daytimeFriday = daytimeSunday = weekperiod = daytime = "";
+        
+    }
+
+    //console.log(monthTime);
+    monthTime += "</tbody></table>";
+
+    //document.getElementById("clockBody").style.display="none";
+    document.getElementById("event-div").style.display = "block";
+
+    document.getElementById("event-div").innerHTML = monthTime;
     //settingmode = true;
 }
 

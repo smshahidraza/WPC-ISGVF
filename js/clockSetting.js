@@ -39,6 +39,12 @@ function ClockSetting(method) {
 			return messageObject;
 		},
 
+		getEventMessage: function(){
+			var eventObject = eventMessage;
+			return eventObject;
+		},
+
+
 		getFirstJumaTime: function(){
 			return this.getPrayerClockSetting()[4].juma1;
 		},
@@ -114,6 +120,34 @@ function ClockSetting(method) {
 			}
 			return stringMesage;
 		},
+
+        getAllActiveEvents: function(numberCounter){
+            var events = this.getEventMessage();
+            var activeEvents = [];
+            var arrayLength = events.length;
+            var currDate = new Date();
+
+            var messageCounter = 0;
+            var currDate = new Date();
+             currDate.setHours(0);
+  			
+  			currDate.setMinutes(0);
+
+            for (var i = 0; i < arrayLength && messageCounter < numberCounter ; i++) {
+
+                var msgarray = events[i].message;
+                var day = events[i].date;
+
+                if(currDate < getDateFromDDMMMYY(day)){
+                    if(msgarray.show == "yes") {
+                        activeEvents[messageCounter] = events[i];
+                        messageCounter++;
+                    }                   
+                }
+            }
+            return activeEvents;
+        },
+
 
 		/*
 		Slider related method

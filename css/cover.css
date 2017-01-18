@@ -304,6 +304,15 @@ body {
   border-bottom:1px solid #ccc;
 }
 
+.eventtable th, td {
+  text-align:left;
+  vertical-align: top;
+  padding-left:20px;
+  margin-bottom: 10px;
+  height:33px;
+  border-bottom: 1px dotted #ccc;;
+}
+
 
 .inner-scroll h3 {
  position: absolute;

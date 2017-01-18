@@ -1,0 +1,36 @@
+/*********************************************/
+/** Date Format should be used as DDMMMYYYY **/
+/*********************************************/
+
+ eventMessage =  
+     eventMessage =  
+    [ 
+		{"date":"11JAN17", "message": [{ "show":"yes", "text":"Message to display on 11 Jan 2017."}]},
+		{		"date":"10JAN2017", 
+			"disptime":"12:00PM-02:00PM", "time":"All Day Event", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
+			"message":{"show":"yes",  "title":"First Event", "detail":"First Important Event"}
+		},
+		{		"date":"16JAN2017", 
+			"disptime":"12:00PM-02:00PM", "time":"Maghrib to Isha", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
+			"message":{"show":"yes",  "title":"First Event", "detail":"Important Event"}
+		},
+		{		"date":"30JAN2017", 
+			"disptime":"12:00PM-02:00PM", "time":"4:00PM to 8:00 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"",
+			"message":{"show":"yes",  "title":"Second Event", "detail":"Very Important Event"}
+		},
+		{		"date":"02FEB2017", 
+			"disptime":"12:00PM-02:00PM", "time":"Asr to Maghrib", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
+			"message":{"show":"yes",  "title":"Second Event", "detail":"Not Very Important Event"}
+		},
+		{		
+			"date":"12FEB2017", 
+			"disptime":"12:00PM-02:00PM", "time":"4:00PM to 10:00 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
+			"message":{"show":"yes",  "title":"The Last Hours", 
+			"detail":"Speaker is coming to give detail about the event, Speaker is coming to give detail about the event, Speaker is coming to give detail about the event, Speaker is coming to give detail about the event..."}
+		}
+
+  
+  	];
+
+      
+    
