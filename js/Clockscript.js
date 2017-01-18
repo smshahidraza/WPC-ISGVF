@@ -1480,7 +1480,7 @@ function loadEvents() {
 
 
     	    var eventDate = getDateFromDDMMMYY(events[i].date);
-            weekperiod += "<td  style='padding-right:20px'><div class='scroll' style='padding:10px;font-weight:normal'><span style='font-size:50px;'>"+eventDate.getDate()+"</span><span style='font-size:25px'>"+eventDate.getShortMonthName()+"</span></br><span style='vertical-align:top;font-size:25px'>"+eventDate.getDayName()+"</span></div></td>";
+            weekperiod += "<td  style='padding-right:20px'><div class='scroll' style='margin:5px;padding-left:6px;padding-right:5px;padding-top:2px;padding-bottom:2px;font-weight:normal'><span style='font-size:50px;'>"+eventDate.getDate()+"</span><span style='font-size:25px'>"+eventDate.getShortMonthName()+"</span></br><span style='vertical-align:top;font-size:25px'>"+eventDate.getDayName()+"</span></div></td>";
             // weekperiod += "<td style='font-size:25px'></td>";    
             weekperiod += "<td width='120px' style='font-size:20px'>"+events[i].time+"</td>";
             weekperiod += "<td align='left' style='font-size:25px'>"+events[i].message.title;
