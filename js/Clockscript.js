@@ -1473,7 +1473,7 @@ function loadEvents() {
     var rowNumber = 1;
 
     var fastingDay = 1;
-    var events = clockSetting.getAllActiveEvents(5);
+    var events = clockSetting.getAllActiveEvents(3);
 
     for (var i = 0 ; i < events.length; i++) {
 
