@@ -306,7 +306,7 @@ body {
 
 .eventtable th, td {
   text-align:left;
-  vertical-align: top;
+  // vertical-align: top;
   padding-left:20px;
   margin-bottom: 10px;
   height:33px;
