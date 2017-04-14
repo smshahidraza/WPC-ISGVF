@@ -1248,9 +1248,16 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
         monthBegin.setDate(monthBegin.getDate() + 1);
     }
     //console.log(monthTime);
-    // monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'><span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br></br><span> **  Dhuhr Iqamah on Weekends – 1:30 PM</span> </td>"+
-    monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'><span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br> </td>"+
-             "<td>Jumma Salah</td><td>1<sup>st</sup></br> 1:30 PM</td><td>2<sup>nd</sup> </br> 2:30 PM</td></tr>";
+    var dhuharWeekendTime = "";
+
+    if(currentDate.dst()){
+        var dhuharWeekendTime = "</br><span> **  Dhuhr Iqamah on Weekends – 1:30 PM</span>";
+    }
+    // monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'><span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br> </td>"+
+    monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'>";
+    monthTime += "<span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br>"+dhuharWeekendTime+"</td>";
+    monthTime += "<td>Jumma Salah</td><td>1<sup>st</sup></br> "+clockSetting.getFirstJumaTime();
+    monthTime += "PM</td><td>2<sup>nd</sup> </br> "+clockSetting.getSecondJumaTime()+" PM</td></tr>";
 
     monthTime += "</tbody></table>";
     //document.getElementById("clockBody").style.display="none";

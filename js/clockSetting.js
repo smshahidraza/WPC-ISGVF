@@ -46,11 +46,21 @@ function ClockSetting(method) {
 
 
 		getFirstJumaTime: function(){
-			return this.getPrayerClockSetting()[4].juma1;
+			var currDate = new Date();
+			if(currDate.dst()){
+				return this.getPrayerClockSetting()[4].juma1;
+			}else {
+				return this.getPrayerClockSetting()[6].juma1DST;				
+			}
 		},
 
 		getSecondJumaTime: function(){
-			return this.getPrayerClockSetting()[5].juma2;
+			var currDate = new Date();
+			if(currDate.dst()){			
+				return this.getPrayerClockSetting()[5].juma2;
+			}else{
+				return this.getPrayerClockSetting()[7].juma2DST;				
+			}
 		},
 
 		getAllActiveMessage: function(){
