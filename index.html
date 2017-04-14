@@ -27,21 +27,74 @@
       <div class="site-wrapper" onmouseover="showControl()" onmouseout="hideControl()">
          <div class="site-wrapper-inner">
             <div class="cover-container">
+
                <div class="masthead clearfix">
                   <div class="inner-top" >
                      <div class="masthead-brand" ><img src="images/isgvf-logo-white-1.png" alt="ISGV Logo" style="width:150px;height:75px;"></div>
                      
-                     <nav onmouseover="" onmouseout="">
+                     <nav id="header-nav" onmouseover="" onmouseout="" >
                         <div class="header-title">
                             <span id="header-title"></span>
                             <span id="user-action" onclick="loadFullScreen()"  class="glyphicon glyphicon-resize-full" style="display:none;cursor:pointer;padding-left:5px;font-size:20px"></span>
                         </div>
                         <div id="header-subtitle" class="header-subtitle"></div>                   
+                     </nav>
+                     <nav id="horiz-time" onmouseover="" onmouseout="" style="display: none">
+                        <div id="" >
+
+                           <div id=''  class='clock-div'>
+                              <div class='row ' >
+                                 <div class='col-lg-2 width14' > 
+                                  <div style='border-right:1px dotted white; ' id="clockFajr">
+                                    <span id='timeFajrSpan'></span><br><span id='nameFajrSpan'></span></div>
+
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2 width14' >
+                                    <div style='border-right:1px dotted white; ' id='clockDhuhr' >
+                                      <span id='timeDhuhrSpan'></span><br><span id='nameDhuhrSpan'></span>
+                                    </div>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2 width14' >
+                                     <div style='border-right:1px dotted white; '  id='clockAsr'>
+                                      <span id='timeAsrSpan'></span><br><span id='nameAsrSpan'></span>
+                                     </div>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2 width14' >
+                                    <div style='border-right:1px dotted white; ' id='clockMaghrib' >
+                                      <span id='timeMaghribSpan'></span><br><span id='nameMaghribSpan'></span>
+                                    </div>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2 width14'  >
+                                      <div style='border-right:1px dotted white; '  id='clockIsha' >
+                                        <span id='timeIshaSpan'></span><br><span id='nameIshaSpan'></span>
+                                      </div>
+                                 </div>
+                                 <!-- /.col-lg-4 -->
+                                 <div class='col-lg-2 width14' id='clockCurrent'>
+                                    <div style='font-size: 50px; margin-right: -80px; ' id='clockFajr' ><span id='currTimeSpan'></span></div>
+                                  </div>
+                                 <!-- /.col-lg-4 -->
+                              </div>
+                              <!-- /.row -->
+                           </div>
+                        
+
+                        </div>
+
                      </nav>                      
+
                      <div id="iqama-time" class="iqama-time"> <div style="float:left;padding-left:10px" >IQAMAH TIME</div><div  style="text-align:right;padding-right:10px"><div id="upcoming-time" ></div></div> </div>
                   </div>
                </div>
                <div id="myCarousel" class="carousel slide" >
+                                                <div id="leftPanel"  class="verticalText" style="display:none; margin-top: 298px;
+    font-size: 25px;
+    margin-left: -240px;"></div>
+
                   <!-- Indicators -->
                   <ol class="carousel-indicators" style="bottom:60px;position:fixed">
                      <!-- 
@@ -50,6 +103,7 @@
                      -->                   
                   </ol>
                   <div class="carousel-inner" role="listbox">
+
                    <div class='item' id='dailytime' >
                         <div style='display:none'>
                            <canvas id='refreshClock' width='30' height='30'  style='position: absolute; top:1px; left:2px; border: 0; cursor: pointer; z-index: 1;'></canvas>
@@ -62,23 +116,23 @@
                                  <div class='col-lg-1' id='padleft' style='width:5px'>
                                  </div>
                                  <!-- /.col-lg-4 -->
-                                 <div class='col-lg-2' id='clock7'>
+                                 <div class='col-lg-2 width19' id='clock7'>
                                     <canvas style='border-right:1px dotted white; ' id='lowerbase7canvas' ></canvas>
                                  </div>
                                  <!-- /.col-lg-4 -->
-                                 <div class='col-lg-2' id='clock8'>
+                                 <div class='col-lg-2 width19' id='clock8'>
                                     <canvas style='border-right:1px dotted white; ' id='lowerbase8canvas' ></canvas>
                                  </div>
                                  <!-- /.col-lg-4 -->
-                                 <div class='col-lg-2' id='clock9'>
+                                 <div class='col-lg-2 width19' id='clock9'>
                                     <canvas style='border-right:1px dotted white; ' id='lowerbase9canvas' ></canvas>
                                  </div>
                                  <!-- /.col-lg-4 -->
-                                 <div class='col-lg-2' id='clock10'>
+                                 <div class='col-lg-2 width19' id='clock10'>
                                     <canvas style='border-right:1px dotted white; ' id='lowerbase10canvas' ></canvas>
                                  </div>
                                  <!-- /.col-lg-4 -->
-                                 <div class='col-lg-2' id='clock11'>
+                                 <div class='col-lg-2 width19' id='clock11'>
                                     <canvas style='border:0px dotted white; ' id='lowerbase11canvas' ></canvas>
                                  </div>
                                  <!-- /.col-lg-4 -->

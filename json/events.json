@@ -5,28 +5,28 @@
  eventMessage =  
      eventMessage =  
     [ 
-		{"date":"11JAN17", "message": [{ "show":"yes", "text":"Message to display on 11 Jan 2017."}]},
+		{"date":"11JUN17", "message": [{ "show":"yes", "text":"Message to display on 11 Jan 2017."}]},
 		{		"date":"10JAN2017", 
 			"disptime":"12:00PM-02:00PM", "time":"All Day Event", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
 			"message":{"show":"yes",  "title":"First Event", "detail":"First Important Event"}
 		},
-		{		"date":"16JAN2017", 
+		{		"date":"16JUN2017", 
 			"disptime":"12:00PM-02:00PM", "time":"Maghrib to Isha", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
 			"message":{"show":"yes",  "title":"First Event", "detail":"Important Event"}
 		},
-		{		"date":"30JAN2017", 
+		{		"date":"30JUN2017", 
 			"disptime":"12:00PM-02:00PM", "time":"4:00PM to 8:00 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"",
 			"message":{"show":"yes",  "title":"Second Event", "detail":"Very Important Event"}
 		},
-		{		"date":"02FEB2017", 
+		{		"date":"02JUL2017", 
 			"disptime":"12:00PM-02:00PM", "time":"1:00 to 1:30 & 2:00 to 2:30", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
 			"message":{"show":"yes",  "title":"Friday Prayer", "detail":"Weekly Friday Prayer"}
 		},
 		{		
-			"date":"12FEB2017", 
+			"date":"12MAY2017", 
 			"disptime":"12:00PM-02:00PM", "time":"4:00PM to 10:00 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
 			"message":{"show":"yes",  "title":"The Last Hours", 
-			"detail":"Speaker is coming to give detail about the event, Speaker is coming to give detail about the event, Speaker is coming to give detail about the event, Speaker is coming to give detail about the event..."}
+			"detail":"Speaker is coming to give detail about the event, Speaker is coming to give detail about the event..."}
 		}
 
   

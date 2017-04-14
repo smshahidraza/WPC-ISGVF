@@ -168,18 +168,15 @@ function ClockSetting(method) {
 			for (var i = 0; i < arrayLength; i++) {
 				var show = prayerClockSlider[i].show;
 				var type = prayerClockSlider[i].type;
-				if(show === 'yes'){
-					activeSlides.push(prayerClockSlider[i]);
-
-					/*
-					if(type === 'slides'){
+				if(type == 'events' ){
+					if(show === 'yes' && this.isActiveEventsAvailable()){
 						activeSlides.push(prayerClockSlider[i]);
-					}else if(type === 'dailytime'){
-						dailytime = true;
-					}else if( type === 'monthtime'){
-						monthtime = true;
 					}
-					*/
+				}else {
+					if(show === 'yes'){
+						activeSlides.push(prayerClockSlider[i]);
+					}
+
 				}
 			}
 			return activeSlides;
@@ -191,7 +188,11 @@ function ClockSetting(method) {
 
 		isMonthTimeOn: function(){
 			return monthtime;
+		},
+		isActiveEventsAvailable: function() {
+    		return this.getAllActiveEvents(1).length > 0 ;
 		}
+
 
 	}
 

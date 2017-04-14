@@ -2,7 +2,7 @@
    "SETTING" : 
 	[
 		
-		{ "name":"ISLAMIC SOCIETY OF GREATER VALLEY FORGE."},
+		{ "name":"ISLAMIC SOCIETY OF GREATER VALLEY FORGE"},
 		{ "address":"958 N Valley Forge Road Devon, PA-19333,"},
 		{"phone":"(610) 688-2209"},
 		{"website":"www.isgvf.org"},
@@ -16,11 +16,11 @@
 
 	"SLIDER" :
 	[
-		{"type":"dailytime", "show": "yes", "delayinsec":"3"}, // Do not remove this line.
-		{"type":"monthtime", "show": "no", "delayinsec":"3"}, // Do not remove this line.
-		{"type":"ramadantime", "show": "no", "delayinsec":"300"}, // Do not remove this line.
-		{"type":"events", "show":"yes", "delayinsec":"300", "source":"events/event.html"},
-		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/isgvf_poster.jpg"},
+		{"type":"dailytime", "show": "yes", "delayinsec":"5"}, // Do not remove this line.
+		{"type":"monthtime", "show": "yes", "delayinsec":"5"}, // Do not remove this line.
+		{"type":"ramadantime", "show": "no", "delayinsec":"5"}, // Do not remove this line.
+		{"type":"events", "show":"yes", "delayinsec":"5", "source":"events/event.html"},
+		{"type":"slides", "show":"yes", "delayinsec":"3", "source":"slides/isgvf_poster.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/enter.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/exit.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/isgvf_halfsheet.jpg"},		

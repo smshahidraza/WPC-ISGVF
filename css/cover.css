@@ -128,9 +128,31 @@ body {
     padding: 0;
 }
 
-.col-lg-2{
+.verticalText {
+    transform: rotate(-90deg);
+    transform-origin: right, top;
+    -ms-transform: rotate(-90deg);
+    -ms-transform-origin:right, top;
+    -webkit-transform: rotate(-90deg);
+    -webkit-transform-origin:right, top;
+    position: absolute; 
+    // color: #ed217c;
+}
+
+.width19 {
   width:19%;
 }
+
+.width14{
+  width:13%;
+  font-size: 25px;
+
+}
+
+.width30{
+  width:25%;
+}
+
 .header-subtitle{
     margin-top: -17px;
     font-size: 25px;

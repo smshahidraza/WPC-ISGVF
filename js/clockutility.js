@@ -377,6 +377,39 @@ function formDateToStringHMMA( time )
   return timeString;
 }
 
+function formDateToStringHMM_A( time )
+{
+  // Get the hour integer part
+  hour = time.getHours();
+  minute = time.getMinutes();
+ 
+  var ap = "AM";
+  if( hour   > 11 ) { ap = "PM";             }
+  if( hour   > 12 ) { hour = hour - 12;      }
+  if( hour   == 0 ) { hour = 12;             }  
+  if( minute < 10 ) { minute = "0" + minute; }
+ 
+  timeString = hour + ":" + minute +" "+ap;
+  return timeString;
+}
+
+function formDateToStringHMM_AWithoutCursor( time )
+{
+  // Get the hour integer part
+  hour = time.getHours();
+  minute = time.getMinutes();
+ 
+  var ap = "AM";
+  if( hour   > 11 ) { ap = "PM";             }
+  if( hour   > 12 ) { hour = hour - 12;      }
+  if( hour   == 0 ) { hour = 12;             }  
+  if( minute < 10 ) { minute = "0" + minute; }
+ 
+  timeString = hour + " " + minute +" "+ap;
+  return timeString;
+}
+
+
 function formDateToStringHMM( time )
 {
   // Get the hour integer part
