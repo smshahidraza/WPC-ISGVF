@@ -320,6 +320,9 @@ body {
 .ramdan-time-th{
   height:35px;
 }
+.ramdan-small-time-th {
+  height:50px;
+}
 .ramdantime th, td {
   text-align:center;
   height:33px;

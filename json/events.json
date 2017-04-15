@@ -27,6 +27,16 @@
 			"disptime":"12:00PM-02:00PM", "time":"4:00PM to 10:00 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
 			"message":{"show":"yes",  "title":"The Last Hours", 
 			"detail":"Speaker is coming to give detail about the event, Speaker is coming to give detail about the event..."}
+		},
+		{		
+			"date":"16MAY2017", 
+			"message":{"show":"no",  "title":"The Last Hours", "type":"Iftaar", "eventType"	:"public", 	
+			"detail":"Hosted by IQRA"}
+		},
+		{		
+			"date":"19MAY2017", 
+			"message":{"show":"no",  "title":"The Last Hours", "type":"Iftaar", "eventType"	:"private", 
+			"detail":"Hosted by ISGVF"}
 		}
 
   

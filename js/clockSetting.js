@@ -158,6 +158,30 @@ function ClockSetting(method) {
             return activeEvents;
         },
 
+        getAllIftarEvents: function(){
+            var events = this.getEventMessage();
+            var activeEvents = [];
+            var arrayLength = events.length;
+            var currDate = new Date();
+
+            var messageCounter = 0;
+            var currDate = new Date();
+             currDate.setHours(0);
+  			
+  			currDate.setMinutes(0);
+
+            for (var i = 0; i < arrayLength	; i++) {
+
+                var msgarray = events[i].message;
+                var day = events[i].date;
+
+                if(msgarray.type == "Iftaar") {
+                    activeEvents[messageCounter] = events[i];
+                    messageCounter++;
+                }                   
+            }
+            return activeEvents;
+        },
 
 		/*
 		Slider related method
