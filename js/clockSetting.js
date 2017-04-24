@@ -19,19 +19,19 @@ function ClockSetting(method) {
 		},
 
 		getHijriAdjustmentDay: function(){
-			return this.getPrayerClockSetting()[7].hijriAdjustDay;
+			return this.getPrayerClockSetting()[9].hijriAdjustDay;
 		},
 
 		getMessagseparator: function(arrayLength){
 			if(arrayLength > 1){
-				return this.getPrayerClockSetting()[8].messageseparator;			
+				return this.getPrayerClockSetting()[10].messageseparator;			
 			}else{
 				return "";
 			}
 		},
 
 		isTimeLimitArcOn(){
-			return this.getPrayerClockSetting()[9].timelimitArc === "on";						
+			return this.getPrayerClockSetting()[11].timelimitArc === "on";						
 		},
 
 		getPrayerClockMessage: function(){
@@ -192,7 +192,7 @@ function ClockSetting(method) {
 		},
 
 		isSlidingOn: function(){
-			return this.getPrayerClockSetting()[6].slider === "on";			
+			return this.getPrayerClockSetting()[8].slider === "on";			
 		},
 
 		getAllActiveSlides: function(){

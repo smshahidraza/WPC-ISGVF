@@ -876,7 +876,7 @@ function setupSlider() {
         } else if (type === 'events') {
 			$('<div class="item" id="eventblock" data-interval="' + delay * 1000 + '">'+
 	            '<div class="container"><div class="row">'+
-	                  '<div id="event-div" class="col-lg-12 col-sm-12">'+
+		                  '<div id="event-div" class="col-lg-12 col-sm-12">'+
 	                     '<div id="event-block"></div></div>'+
 	                  '</div></div></div>'
 	         ).appendTo('.carousel-inner');
@@ -919,6 +919,10 @@ function setupSlider() {
         var currentIndex = $('div.active').index() + 1;
         // console.log("currentIndex:" + currentIndex);
         if (currentIndex == 1) {
+ 			
+ 			fillClockArray(10);
+        	animateloop = setInterval(createClockAnimation, 25);
+
             $("#utilityfooter").fadeIn("slow");
             // $("#utilityfooter").show();
             $("#iqama-time").show();
@@ -1036,6 +1040,7 @@ function setupApp() {
     updatePrayerClockTime();
     clocksArray[0].CURRENT.name  = "NONE";
     setupSlider();
+
 
     //createUtilityIcon();
     //createFixedUtilityIcon();
@@ -1256,11 +1261,11 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     }
     // monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'><span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br> </td>"+
     monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'>";
-    monthTime += "<span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br>"+dhuharWeekendTime+"</td>";
+    monthTime += "<span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br>"+dhuharWeekendTime+"</td><";
     monthTime += "<td>Jumma Salah</td><td>1<sup>st</sup></br> "+clockSetting.getFirstJumaTime();
     monthTime += "PM</td><td>2<sup>nd</sup> </br> "+clockSetting.getSecondJumaTime()+" PM</td></tr>";
 
-    monthTime += "</tbody></table>";
+    monthTime += "</tbody></table><div style='text-align:right'><span style='font-size:12px'><a href='http://www.freepik.com'>Background image: Designed by Freepik</a></span></div>";
     //document.getElementById("clockBody").style.display="none";
     document.getElementById("week-time").style.display = "block";
 
@@ -1298,7 +1303,7 @@ function loadRamadanCalendar(monthNumSetting, _yearNumSetting) {
     console.log("Month:" + monthNum + "Year:" + yearNumSetting);
 
     //console.log(todayDate.getMonth()+1+", " + getDaysInMonth(todayDate.getMonth()+1, todayDate.getFullYear())+", " + todayDate.getFullYear());
-    var monthTime = "<span style='font-size:30px; float:left;padding-bottom:40px'><i class='glyphicon glyphicon-time'></i> RAMADAN - " + todayDate.getFullYear() + "</span>";
+    var monthTime = "<span style='font-size:30px; float:left;padding-bottom:20px'><i class='glyphicon glyphicon-time'></i> RAMADAN - " + todayDate.getFullYear() + "</span>";
     monthTime += "<table style='font-size:25px; width:100%' border='0' class='weektime' id='settingbody' summary='Time Setting'><thead><tr class='monthprayer-time-th clock-div'>";
     //monthTime +="<th  style='font-size:18px; text-align:left' colspan='4'>"+todayDate.getMonthName()+", "+todayDate.getFullYear()+"</th><th  scope='col'></th><th  scope='col' style='font-size:22px'><a href='#' onclick='closesetting();return false;''>x</a></th></tr></thead><tbody>";
     monthTime += "<th  scope='col'></th><th  scope='col'>RAMADAN</th>"+
@@ -1589,11 +1594,11 @@ function loadEvents() {
             // weekperiod += "<td style='font-size:25px'></td>";    
             weekperiod += "<td width='30px' style='font-size:20px'><i class='glyphicon glyphicon-time'></i></td>";
             weekperiod += "<td width='120px' style='font-size:20px'>"+events[i].time+"</td>";
-            weekperiod += "<td align='left' style='font-size:35px;'><div class='scroll' style='margin:5px;padding-left:6px;padding-right:5px;padding-top:2px;padding-bottom:2px;font-weight:bold'>"+events[i].message.title;
+            weekperiod += "<td align='left' style='font-size:25px;'><div  class='clock-div' style='margin:5px;border-radius:10px;padding-left:15px;padding-right:5px;padding-top:5px;padding-bottom:5px;'>"+events[i].message.title;
             if(events[i].speaker != '') {
-            	weekperiod += "<br><span style='font-size:20px;font-weight:normal'><i class='glyphicon glyphicon-user'></i>  Speaker: "+events[i].speaker+"</span>";
+            	weekperiod += "<br><span style='font-size:18px;font-weight:normal'><i class='glyphicon glyphicon-user'></i>  Speaker: "+events[i].speaker+"</span>";
             }
-            weekperiod += "<br><span style='font-size:20px;font-weight:normal'>"+events[i].message.detail+"</span></div></td>";
+            weekperiod += "<br><span style='font-size:17px;font-weight:normal'>"+events[i].message.detail+"</span></div></td>";
 
             daytime += "<tr >" + weekperiod;
             //+daytime;
@@ -1876,14 +1881,14 @@ function createFixedUtilityIcon() {
 
 }
 
-function fillClockArray() {
+function fillClockArray(numberofsteps) {
     var clockCounter = 0;
     for (var pClkInsind in prayerClockIns) {
         prayerName = prayerClockIns[pClkInsind].name.toUpperCase();
         var paryerNameSmall = prayerClockIns[pClkInsind].name;
         if (prayerName == 'FAJR' || prayerName == 'DHUHR' || prayerName == 'ASR' || prayerName == 'MAGHRIB' || prayerName == 'ISHA') {
             //if(clocksArray[0]['CURRENT'].name != prayerClockIns[pClkInsind].name){
-            fillUpClocksArray(clocksArray[0][clockSequence[clockCounter]], prayerClockIns[pClkInsind], 15);
+            fillUpClocksArray(clocksArray[0][clockSequence[clockCounter]], prayerClockIns[pClkInsind], numberofsteps);
             if (getCurrentPrayerTime().name == paryerNameSmall) {
                 $("#clock"+paryerNameSmall).css("background", "rgba(255,207,0,0.6)");
                 $("#clock"+paryerNameSmall).css("border-bottom", "2px solid white");
@@ -1905,7 +1910,7 @@ function updatePrayerClockTime() {
     if (clocksArray[0].CURRENT.name != getCurrentPrayerTime().name) {
         //console.log(clocksArray[0].CURRENT.name + "-->" + getCurrentPrayerTime().name);
         //fillUpClocksArray(clocksArray[0].CURRENT, getCurrentPrayerTime(),15);
-        fillClockArray();
+        fillClockArray(15);
         return true;
     } else {
         return false;
@@ -2002,10 +2007,10 @@ function updateTimeWidget() {
         //context.stroke();
         $('#timecanvas').attr('height', (window.innerHeight / 10) * 1.7);
         if(sdate.getSeconds()%2 == 0 ){
-            $("#currTimeSpan").text(formDateToStringHMM_A(sdate));
+            $("#currTimeSpan").text(formDateToStringHMM(sdate));
 
         }else {
-            $("#currTimeSpan").text(formDateToStringHMM_AWithoutCursor(sdate));
+            $("#currTimeSpan").text(formDateToStringHMM_WithoutColon(sdate));
 
         }
 

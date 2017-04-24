@@ -361,6 +361,7 @@ function formDateToString( time )
   return timeString;
 }
 
+
 function formDateToStringHMMA( time )
 {
   // Get the hour integer part
@@ -423,6 +424,21 @@ function formDateToStringHMM( time )
   timeString = hour + ":" + minute;
   return timeString;
 }
+
+function formDateToStringHMM_WithoutColon( time )
+{
+  // Get the hour integer part
+  hour = time.getHours();
+  minute = time.getMinutes();
+ 
+  if( hour   > 12 ) { hour = hour - 12;      }
+  if( hour   == 0 ) { hour = 12;             }
+  if( minute < 10 ) { minute = "0" + minute; }
+ 
+  timeString = hour + " " + minute;
+  return timeString;
+}
+
 
 
 function dateToDDMMMyyString(date){
@@ -950,20 +966,30 @@ function createCurrTimeBlock(leftcontext, leftcanvas){
     //leftcontext.arc(leftcanvas.width/2, leftcanvas.height/2, radius, 0,Math.PI, true); 
     //leftcontext.closePath();
     leftcontext.lineWidth = 1;
-     $("#timecanvas").css("background","rgba(255, 255, 255, 0.65)");
-      $("#timecanvas").css("border-radius","6px");
-    var fontsize = Math.round(radius*2.4);
+    // $("#timecanvas").css("background","rgba(255, 255, 255, 0.65)");
+    //    $("#timecanvas").css("border-radius","6px");
+    // $("#timecanvas").css("border","1px solid white");
+    var fontsize = Math.round(radius*2.2);
 
     leftcontext.font=fontsize+"px "+isgvffont;
     //leftcontext.font="lighter 12px Source Sans Pro "; //Georgia
-    leftcontext.fillStyle = "#484646";
+    leftcontext.fillStyle = "white";
     var currdate = new Date();
     
-    var currTime = formDateToStringHMM(currdate);
+    var currTime;// = formDateToStringHMM(currdate); 
+    if(currdate.getSeconds()%2 == 0 ){
+            currTime = formDateToStringHMM(currdate); 
+
+    }else {
+           currTime = formDateToStringHMM_WithoutColon(currdate); 
+
+    }
+
+    // var currTime = formDateToStringHMM(currdate);
     var currTimeWithAP = formDateToStringHMMA(currdate);
     //var currTime = formDateToString(currdate);
     timeWidth = leftcontext.measureText(currTime).width;
-    leftcontext.fillText(currTime,leftcanvas.width/2 - timeWidth/2, leftcanvas.height/2 + leftcanvas.height*0.01);
+    leftcontext.fillText(currTime,leftcanvas.width - timeWidth - 10, leftcanvas.height/2 + leftcanvas.height*0.01);
     
     //todayDate = sunRisetime.getTime();
     //console.log(dateToDDMMMyyString(sunRisetime));
@@ -971,32 +997,25 @@ function createCurrTimeBlock(leftcontext, leftcanvas){
     leftcontext.font=fontsize+"px "+isgvffont;
     dateWidth = leftcontext.measureText(dateToDDDMMMyyyyString(currdate)).width;
 
-    leftcontext.fillText(dateToDDDMMMyyyyString(currdate),leftcanvas.width/2 - dateWidth/2, leftcanvas.height/2 + leftcanvas.height*0.40);
+    leftcontext.fillText(dateToDDDMMMyyyyString(currdate),leftcanvas.width - dateWidth - 10, leftcanvas.height/2 + leftcanvas.height*0.40);
 
-    fontsize = Math.round(radius*0.8);
-    leftcontext.font=fontsize+"px "+isgvffont;   
+    // fontsize = Math.round(radius*0.8);
+    // leftcontext.font=fontsize+"px "+isgvffont;   
 
-    fontsize = Math.round(radius*0.8);
-    leftcontext.font=fontsize+"px "+isgvffont;
+    // fontsize = Math.round(radius*0.8);
+    // leftcontext.font=fontsize+"px "+isgvffont;
 
-    var ampm = "A";
-    if(currTimeWithAP.indexOf("AM") == -1){
-      ampm = "P";
-    }
+    // var ampm = "A";
+    // if(currTimeWithAP.indexOf("AM") == -1){
+    //   ampm = "P";
+    // }
 
-    //aWidth = leftcontext.measureText(ampm).width;    
-    leftcontext.fillText(ampm,leftcanvas.width/2 + timeWidth/2 + 4, leftcanvas.height/2 - 30);
-
-
-    //aWidth = leftcontext.measureText("M").width;    
-    leftcontext.fillText("M",leftcanvas.width/2 + timeWidth/2 + 1, leftcanvas.height/2 -3 );
+    // leftcontext.fillText(ampm,leftcanvas.width/2 + timeWidth/2 + 4, leftcanvas.height/2 - 30);
 
 
-    //console.log("timeWidth"+ timeWidth+ "dateWidth"+dateWidth);
-    //var sunriseWidth = leftcontext.measureText("Sunrise").width;
-    //leftcontext.fillText("Sunrise",leftcanvas.width/2 - sunriseWidth/2, leftcanvas.height/2 - leftcanvas.height*0.30);
+    // leftcontext.fillText("M",leftcanvas.width/2 + timeWidth/2 + 1, leftcanvas.height/2 -3 );
 
-    leftcontext.stroke();
+    // leftcontext.stroke();
 }
 
 function createSunRay(mycontext, mycanvas, radius){
