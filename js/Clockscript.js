@@ -1097,12 +1097,17 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
 
     console.log("Month:" + monthNum + "Year:" + yearNumSetting);
 
+    var doubleStrisk="";
+ 	if(!currentDate.dst()){
+ 		doubleStrisk = "<sup>**</sup>";
+ 	}
+
     //console.log(todayDate.getMonth()+1+", " + getDaysInMonth(todayDate.getMonth()+1, todayDate.getFullYear())+", " + todayDate.getFullYear());
     var monthTime = "<span style='font-size:30px; float:left;padding-bottom:30px'><i class='glyphicon glyphicon-time'></i> IQAMAH TIMES - " + todayDate.getMonthName().toUpperCase() + ", " + todayDate.getFullYear() + "</span>";
     monthTime += "<table style='font-size:25px; width:100%' border='0' class='weektime' id='settingbody' summary='Time Setting'><thead><tr class='monthprayer-time-th clock-div'>";
     //monthTime +="<th  style='font-size:18px; text-align:left' colspan='4'>"+todayDate.getMonthName()+", "+todayDate.getFullYear()+"</th><th  scope='col'></th><th  scope='col' style='font-size:22px'><a href='#' onclick='closesetting();return false;''>x</a></th></tr></thead><tbody>";
     monthTime += "<th  scope='col'></th><th  scope='col'>DATE</th><th  scope='col'>FAJR<sup>*</sup><span style='font-size:12px'>&nbsp; ( AM )<span></th>"+
-                 "<th  scope='col'>DHUHR<sup>**</sup><span style='font-size:12px'>&nbsp; ( PM )<span></th><th  scope='col'>ASR<span style='font-size:12px'>&nbsp; ( PM )<span></th>"+
+                 "<th  scope='col'>DHUHR"+doubleStrisk+"<span style='font-size:12px'>&nbsp; ( PM )<span></th><th  scope='col'>ASR<span style='font-size:12px'>&nbsp; ( PM )<span></th>"+
                  "<th  scope='col'>MAGHRIB<span style='font-size:12px'>&nbsp; ( PM )<span></th>"+
                  "<th  scope='col'>ISHA<span style='font-size:12px'>&nbsp; ( PM )<span></th></tr></thead><tbody>";
 
@@ -1261,7 +1266,7 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     }
     // monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'><span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br> </td>"+
     monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'>";
-    monthTime += "<span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br>"+dhuharWeekendTime+"</td><";
+    monthTime += "<span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br>"+dhuharWeekendTime+"</td>";
     monthTime += "<td>Jumma Salah</td><td>1<sup>st</sup></br> "+clockSetting.getFirstJumaTime();
     monthTime += "PM</td><td>2<sup>nd</sup> </br> "+clockSetting.getSecondJumaTime()+" PM</td></tr>";
 
