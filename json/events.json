@@ -5,38 +5,60 @@
  eventMessage =  
      eventMessage =  
     [ 
-		{"date":"11JUN17", "message": [{ "show":"yes", "text":"Message to display on 11 Jan 2017."}]},
+		{"date":"19MAY2016", "message": [{ "show":"yes", "text":"Message to display on 11 Jan 2017."}]},
 		{		"date":"10JAN2017", 
-			"disptime":"12:00PM-02:00PM", "time":"All Day Event", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
+			"disptime":"12:00PM-02:00PM", "time":"07:30 PM - 8:15 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
 			"message":{"show":"yes",  "title":"First Event", "detail":"First Important Event"}
 		},
-		{		"date":"16JUN2017", 
-			"disptime":"12:00PM-02:00PM", "time":"Maghrib to Isha", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
-			"message":{"show":"yes",  "title":"First Event", "detail":"Important Event"}
+		{		"date":"19MAY2017", 
+			"disptime":"12:00PM-02:00PM", "time":"07:30 PM - 8:15 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Imam Dr. Ahmad Abdallah",
+			"message":{"show":"yes",  "title":"Welcome Ramadan", "detail":"Potluck Food Event, Location: ISGVF Activity Hall"}
 		},
-		{		"date":"30JUN2017", 
-			"disptime":"12:00PM-02:00PM", "time":"4:00PM to 8:00 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"",
-			"message":{"show":"yes",  "title":"Second Event", "detail":"Very Important Event"}
+		{		"date":"21MAY2017", 
+			"time":"7:00 AM to 8:00 AM", "speaker":"",
+			"message":{"show":"yes",  "title":"Adopt a Highway", "detail":"Community members, friends and families, and parents and the Weekend School students from grade 7 and above are invited to participate. Please contact Br. Murat Odemis at 610-350-8998"}
 		},
-		{		"date":"02JUL2017", 
-			"disptime":"12:00PM-02:00PM", "time":"1:00 to 1:30", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
-			"message":{"show":"yes",  "title":"Friday Prayer", "detail":"Weekly Friday Prayer"}
-		},
-		{		
-			"date":"12MAY2017", 
-			"disptime":"12:00PM-02:00PM", "time":"4:00PM to 10:00 PM", "starttime":"04:00PM", "endtime":"05:00PM", "speaker":"Sheikh Ahmad",
-			"message":{"show":"yes",  "title":"The Last Hours", 
-			"detail":"Speaker is coming to give detail about the event, Speaker is coming to give detail about the event..."}
+		{		"date":"03JUN2017", 
+			"time":"7:00 PM to 10:00 PM", "speaker":"",
+			"message":{"show":"yes",  "title":"ISGVF Annual Fund Raiser", "detail":"ISGVF 2017 Ramadan Fundraising campaign to raise funds for Masjid operation – Goal is to raise $150,000 InSha’Allah"}
 		},
 		{		
-			"date":"16MAY2017", 
-			"message":{"show":"no",  "title":"The Last Hours", "type":"Iftaar", "eventType"	:"public", 	
-			"detail":"Hosted by IQRA"}
+			"date":"09JUN2017", 
+			 "time":"10:30PM to Fajr", "speaker":"",
+			"message":{"show":"yes",  "title":"Ramadan Qiyam for Young Muslims", 
+			"detail":"Ramadan Qiyam for Young Muslims from Isha prayer to Fajr Prayer. Suhur will be served."}
 		},
 		{		
-			"date":"19MAY2017", 
-			"message":{"show":"no",  "title":"The Last Hours", "type":"Iftaar", "eventType"	:"private", 
-			"detail":"Hosted by ISGVF"}
+			"date":"01JAN2000", 
+			"message":{"type":"Iftaar", "eventType":"public", 	"detail":"--------- IFTAR EVENT -------------------------"}
+		},		
+		{		
+			"date":"27MAY2017", 
+			"message":{"type":"Iftaar", "eventType":"public", 	"detail":"Community Iftar "}
+		},
+		{		
+			"date":"28MAY2017", 
+			"message":{"type":"Iftaar", "eventType":"public", 	"detail":"Community Iftar"}
+		},
+		{		
+			"date":"03JUNE2017", 
+			"message":{"type":"Iftaar", "eventType":"public",  "detail":"ISGVF Fundraising Iftar"}
+		},
+		{		
+			"date":"10JUNE2017", 
+			"message":{"type":"Iftaar", "eventType":"public", 	"detail":"Community Iftar "}
+		},
+		{		
+			"date":"11JUNE2017", 
+			"message":{"type":"Iftaar", "eventType":"public", 	"detail":"Community Iftar"}
+		},
+		{		
+			"date":"14JUNE2017", 
+			"message":{"type":"Iftaar", "eventType":"private	", 	"detail":"Sharing Ramadan with non-Muslim Community."}
+		},
+		{		
+			"date":"17JUNE2017", 
+			"message":{"type":"Iftaar", "eventType":"public", 	"detail":"Community Iftar"}
 		}
 
   
