@@ -978,7 +978,6 @@ function setupApp() {
 
     //console.log(prayerClockIns);
 
-
     //refreshClockCanavas.addEventListener('click', function(event) {
     //    reloadClockWithTodayDate();
     //}, false);
@@ -1308,7 +1307,7 @@ function loadRamadanCalendar(monthNumSetting, _yearNumSetting) {
     }
     
     var monthEnd = new Date(monthBegin.getFullYear(), monthBegin.getMonth(), monthBegin.getDate());
-    monthEnd.setDate(monthBegin.getDate() + 6);
+    monthEnd.setDate(monthBegin.getDate() + 7);
 
     // var monthEnd = new Date();
     // monthEnd = monthEnd.setDate(monthBegin.getDate() + 7);
@@ -1382,8 +1381,8 @@ function loadRamadanCalendar(monthNumSetting, _yearNumSetting) {
                     iconClass = "icon-group";    
                 }
 
-                daytimeSunday += "<td style='text-align:right' ><span style='padding-left:10px;padding-right:10px;'><i class='"+iconClass+"'>";
-                daytimeSunday += "</i><i class='icon-food'  style='padding-left:10px;padding-right:10px;'></i>"+iftarEvent.message.detail+"</span> </td>";                    
+                daytimeSunday += "<td style='text-align:right' ><span style='padding-left:10px;padding-right:10px;'>";
+                daytimeSunday += iftarEvent.message.detail+"<i class='glyphicon glyphicon-cutlery' style='padding-left:10px;padding-right:10px'></i></span> </td>";                    
             }else{
                 daytimeSunday += "<td style='text-align:right' ></td>";                                    
             }
@@ -1437,9 +1436,9 @@ function loadRamadanCalendar(monthNumSetting, _yearNumSetting) {
 
     }
 
-    monthTime += "<tr class='ramdan-small-time-th' style='background:rgb(53, 143, 210);text-shadow:none;height:70px'>";
-    monthTime += "<td colspan='7'><i class='glyphicon glyphicon-cutlery' style='padding-right:10px'></i>Aftar at ISGVF";
-    monthTime += "<i class='icon-lock' style='padding-left:30px;padding-right:10px' ></i>Private event<i class='icon-group' style='padding-left:30px;padding-right:10px'></i>Public event</td></tr>";
+    // monthTime += "<tr class='ramdan-small-time-th' style='background:rgb(53, 143, 210);text-shadow:none;height:70px'>";
+    // monthTime += "<td colspan='7'><i class='glyphicon glyphicon-cutlery' style='padding-right:10px'></i>Aftar at ISGVF";
+    // monthTime += "<i class='icon-lock' style='padding-left:30px;padding-right:10px' ></i>Private event<i class='icon-group' style='padding-left:30px;padding-right:10px'></i>Public event</td></tr>";
     monthTime += "</tbody></table>";
     document.getElementById("ramadan-time").style.display = "block";
 
@@ -1600,22 +1599,22 @@ function loadEvents() {
     var rowNumber = 1;
 
     var fastingDay = 1;
-    var events = clockSetting.getAllActiveEvents(4);
+    var events = clockSetting.getAllActiveEvents(3);
 
     for (var i = 0 ; i < events.length; i++) {
 
 
 
     	    var eventDate = getDateFromDDMMMYY(events[i].date);
-            weekperiod += "<td  style='width:10%; padding-right:20px; text-align:center'><div class='scroll' style='margin:5px;padding-left:6px;padding-right:5px;padding-top:2px;padding-bottom:2px;font-weight:normal'><span style='font-size:50px;'>"+eventDate.getDate()+"</span><span style='font-size:25px'>"+eventDate.getShortMonthName()+"</span></br><span style='vertical-align:top;font-size:25px'>"+eventDate.getDayName()+"</span></div></td>";
+            weekperiod += "<td  style='width:10%; padding-right:20px; text-align:center'><div class='scroll' style='margin:5px;padding-left:10px;padding-right:9px;padding-top:4px;padding-bottom:4px;font-weight:normal'><span style='font-size:55px;'>"+eventDate.getDate()+"</span><span style='font-size:25px'>"+eventDate.getShortMonthName()+"</span></br><span style='vertical-align:top;font-size:25px'>"+eventDate.getDayName()+"</span></div></td>";
             // weekperiod += "<td style='font-size:25px'></td>";    
             weekperiod += "<td width='30px' style='font-size:20px'><i class='glyphicon glyphicon-time'></i></td>";
             weekperiod += "<td width='120px' style='font-size:20px'>"+events[i].time+"</td>";
-            weekperiod += "<td align='left' style='font-size:25px;'><div  class='clock-div' style='margin:5px;border-radius:10px;padding-left:15px;padding-right:5px;padding-top:5px;padding-bottom:5px;'>"+events[i].message.title;
+            weekperiod += "<td align='left' style='font-size:30px;'><div  class='clock-div' style='margin:5px;border-radius:10px;padding-left:15px;padding-right:5px;padding-top:5px;padding-bottom:5px;'>"+events[i].message.title;
             if(events[i].speaker != '') {
-            	weekperiod += "<br><span style='font-size:18px;font-weight:normal'><i class='glyphicon glyphicon-user'></i>  Speaker: "+events[i].speaker+"</span>";
+            	weekperiod += "<br><span style='font-size:22px;font-weight:normal'><i class='glyphicon glyphicon-user'></i>  Speaker: "+events[i].speaker+"</span>";
             }
-            weekperiod += "<br><span style='font-size:17px;font-weight:normal'>"+events[i].message.detail+"</span></div></td>";
+            weekperiod += "<br><span style='font-size:20px;font-weight:normal'>"+events[i].message.detail+"</span></div></td>";
 
             daytime += "<tr >" + weekperiod;
             //+daytime;

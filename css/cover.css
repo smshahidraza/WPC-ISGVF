@@ -315,7 +315,9 @@ body {
 }
 .weektime th, td, tr {
   text-align:center;
-  height:57px;
+  height:63px;
+  font-weight: bold;
+  font-size: 27px;
 }
 .ramdan-time-th{
   height:35px;
