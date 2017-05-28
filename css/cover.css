@@ -319,6 +319,10 @@ body {
   font-weight: bold;
   font-size: 27px;
 }
+.allmonthheader{
+  font-weight:bold;
+  font-size:17px;
+}
 .ramdan-time-th{
   height:35px;
 }
