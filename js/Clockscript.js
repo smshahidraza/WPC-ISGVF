@@ -1277,8 +1277,8 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     monthTime += "<span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br>"+dhuharWeekendTime+"</td>";
     monthTime += "<td>Jumma Salah</td><td>1<sup>st</sup></br> "+clockSetting.getFirstJumaTime();
     monthTime += "PM</td><td>2<sup>nd</sup> </br> "+clockSetting.getSecondJumaTime()+" PM</td></tr>";
-
-    monthTime += "</tbody></table><div style='text-align:right'><span style='font-size:12px'><a href='http://www.freepik.com'>Background image: Designed by Freepik</a></span></div>";
+	var backgroundimagesrc = "http://placesunderthesun.com/wp-content/uploads/2014/06/Stargazing-in-Cherry-Spring-State-Park-Pennsylvania-2.jpg";
+    monthTime += "</tbody></table><div style='text-align:right'><span style='font-size:12px'><a href='http://www.freepik.com'>Background image: "+backgroundimagesrc+"</a></span></div>";
     //document.getElementById("clockBody").style.display="none";
     document.getElementById("week-time").style.display = "block";
 
@@ -1304,19 +1304,36 @@ function loadRamadanCalendar(monthNumSetting, _yearNumSetting) {
     //}
     var diffDays = 0;
     var numberofDaysRemaining = 0;
+
     var monthBegin = new Date(todayDate.getFullYear(), 4, 27); // Ramadan in 2017 starting May 26
+    var ramadanBegin = new Date(todayDate.getFullYear(), 4, 27);
+    var ramadanEnd = new Date(2017, 5, 25);
 //    if (monthBegin.getDay() < todayDate.getDay() && monthBegin.getMonth() < todayDate.getMonth()) {
-    if (monthBegin < todayDate) {
+    
+    var ramdaEndDiffWithToday = Math.abs(ramadanEnd.getTime() - todayDate.getTime());
+    var ramdaEndDiffInDays = Math.ceil(ramdaEndDiffWithToday / (1000 * 3600 * 24))        
+    
+
+    if (monthBegin < todayDate ) {
         var timeDiff = Math.abs(todayDate.getTime() - monthBegin.getTime());
-        diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
+        diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         monthBegin = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
     } else {
         var timeDiff = Math.abs(monthBegin.getTime() - todayDate.getTime());
         numberofDaysRemaining = Math.ceil(timeDiff / (1000 * 3600 * 24))        
     }
+	
+	var monthEnd = new Date(monthBegin.getFullYear(), monthBegin.getMonth(), monthBegin.getDate());
     
-    var monthEnd = new Date(monthBegin.getFullYear(), monthBegin.getMonth(), monthBegin.getDate());
-    monthEnd.setDate(monthBegin.getDate() + 7);
+    if(ramdaEndDiffInDays >= 8 ){
+		monthEnd.setDate(monthBegin.getDate() + 7);
+	}else {
+		monthBegin.setDate(ramadanEnd.getDate() - 7);
+		timeDiff = Math.abs(ramadanBegin.getTime() - ramadanEnd.getTime());
+        diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)  - 8);
+		monthEnd = new Date(ramadanEnd.getFullYear(), ramadanEnd.getMonth(), ramadanEnd.getDate());
+ 	}
+    
 
     // var monthEnd = new Date();
     // monthEnd = monthEnd.setDate(monthBegin.getDate() + 7);

@@ -21,9 +21,9 @@
 		{"type":"dailytime", "show": "yes", "delayinsec":"5"}, // Do not remove this line.
 		{"type":"monthtime", "show": "yes", "delayinsec":"3"}, // Do not remove this line.
 		{"type":"ramadantime", "show": "yes", "delayinsec":"3"}, // Do not remove this line.
-		{"type":"allmonthtime", "show": "yes", "delayinsec":"300"}, // Do not remove this line.		
+		{"type":"allmonthtime", "show": "no", "delayinsec":"3"}, // Do not remove this line.		
 		{"type":"events", "show":"yes", "delayinsec":"3", "source":"events/event.html"},
-		{"type":"slides", "show":"yes", "delayinsec":"5", "source":"slides/Ramadan.jpg"},
+		{"type":"slides", "show":"yes", "delayinsec":"5", "source":"slides/ramadannewtrans.png"},
 		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/isgvf_poster.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/enter.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/exit.jpg"},
