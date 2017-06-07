@@ -415,6 +415,11 @@ function refreshClock() {
             clocksArray[0].CURRENT.name =  currentPrayerName;
             createUtilityIcon();
             createFixedUtilityIcon();
+            /* Load below three slides if time changes.. */
+            loadRamadanCalendar(currentDate);
+            loadEvents();
+            loadSetting(currentDate.getMonth(),currentDate.getFullYear());
+
 
             var canvasIndex = canvasIndexPassed;
             var radius = r;
@@ -872,7 +877,7 @@ function setupSlider() {
                               '</div></div></div>'
                      ).appendTo('.carousel-inner');
 
-            loadRamadanCalendar(currentDate.getMonth(),currentDate.getFullYear());
+            loadRamadanCalendar(currentDate);
         }else if (type === 'allmonthtime') {
                 $('<div class="item" id="weekprayertime" data-interval="' + delay * 1000 + '">'+
                         '<div class="container"><div class="row">'+
@@ -1287,12 +1292,12 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
 }
 
 
-function loadRamadanCalendar(monthNumSetting, _yearNumSetting) {
+function loadRamadanCalendar(currentDateForRamadan) {
     //monthNum = 0;
-    monthNum = monthNumSetting;
-    yearNumSetting = _yearNumSetting;
+    // monthNum = monthNumSetting;
+    // yearNumSetting = _yearNumSetting;
     var todayDate = new Date();
-    var crdate = new Date();
+    var crdate = currentDateForRamadan;
     var one_day = 1000 * 60 * 60 * 24;
 
     // todayDate.setDate(crdate.getDay());
