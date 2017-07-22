@@ -416,10 +416,17 @@ function refreshClock() {
             createUtilityIcon();
             createFixedUtilityIcon();
             /* Load below three slides if time changes.. */
-            loadRamadanCalendar(currentDate);
-            loadEvents();
-            loadSetting(currentDate.getMonth(),currentDate.getFullYear());
-
+            var m = clockSetting.getAllActiveSlides();
+            for (var i = 0; i < m.length; i++) {
+                var type = m[i].type;
+                if (type === 'monthtime') {
+                    loadSetting(currentDate.getMonth(),currentDate.getFullYear());
+                }else if (type === 'ramadantime') {
+                    loadRamadanCalendar(currentDate, getDateFromDDMMMYY(m[i].begindate), getDateFromDDMMMYY(m[i].enddate));
+                } else if (type === 'events') {
+                    loadEvents();
+                }
+            }
 
             var canvasIndex = canvasIndexPassed;
             var radius = r;
@@ -877,7 +884,7 @@ function setupSlider() {
                               '</div></div></div>'
                      ).appendTo('.carousel-inner');
 
-            loadRamadanCalendar(currentDate);
+            loadRamadanCalendar(currentDate, getDateFromDDMMMYY(m[i].begindate), getDateFromDDMMMYY(m[i].enddate));
         }else if (type === 'allmonthtime') {
                 $('<div class="item" id="weekprayertime" data-interval="' + delay * 1000 + '">'+
                         '<div class="container"><div class="row">'+
@@ -1292,10 +1299,14 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
 }
 
 
-function loadRamadanCalendar(currentDateForRamadan) {
+function loadRamadanCalendar(currentDateForRamadan, beginRamdan, endRamadan) {
     //monthNum = 0;
     // monthNum = monthNumSetting;
     // yearNumSetting = _yearNumSetting;
+    if(!clockSetting.isRamadanActive(beginRamdan, endRamadan)){
+        return false;
+    }
+
     var todayDate = new Date();
     var crdate = currentDateForRamadan;
     var one_day = 1000 * 60 * 60 * 24;
@@ -1310,9 +1321,10 @@ function loadRamadanCalendar(currentDateForRamadan) {
     var diffDays = 0;
     var numberofDaysRemaining = 0;
 
-    var monthBegin = new Date(todayDate.getFullYear(), 4, 27); // Ramadan in 2017 starting May 26
-    var ramadanBegin = new Date(todayDate.getFullYear(), 4, 27);
-    var ramadanEnd = new Date(2017, 5, 25);
+    var monthBegin = beginRamdan; // Ramadan in 2017 starting May 26
+    var ramadanBegin = beginRamdan;
+    var ramadanEnd = endRamadan;
+
 //    if (monthBegin.getDay() < todayDate.getDay() && monthBegin.getMonth() < todayDate.getMonth()) {
     
     var ramdaEndDiffWithToday = Math.abs(ramadanEnd.getTime() - todayDate.getTime());
@@ -1747,6 +1759,9 @@ function loadEvents() {
 
     var fastingDay = 1;
     var events = clockSetting.getAllActiveEvents(3);
+    if(events.length == 0){
+        return false;
+    }
 
     for (var i = 0 ; i < events.length; i++) {
 

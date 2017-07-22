@@ -206,6 +206,10 @@ function ClockSetting(method) {
 					if(show === 'yes' && this.isActiveEventsAvailable()){
 						activeSlides.push(prayerClockSlider[i]);
 					}
+				}else if(type == 'ramadantime' ){
+					if(show === 'yes' && this.isRamadanActive(getDateFromDDMMMYY(prayerClockSlider[i].begindate), getDateFromDDMMMYY(prayerClockSlider[i].enddate))) {
+						activeSlides.push(prayerClockSlider[i]);
+					}
 				}else {
 					if(show === 'yes'){
 						activeSlides.push(prayerClockSlider[i]);
@@ -225,6 +229,10 @@ function ClockSetting(method) {
 		},
 		isActiveEventsAvailable: function() {
     		return this.getAllActiveEvents(1).length > 0 ;
+		},
+		isRamadanActive(ramadanBegin, ramandanEnd){
+			var currDate = new Date();
+			return (currDate.getTime() >= ramadanBegin.getTime()  && currDate.getTime() <= ramandanEnd.getTime());
 		}
 
 
