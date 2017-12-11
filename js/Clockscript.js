@@ -1112,6 +1112,10 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     }
     var monthEnd = new Date(todayDate.getFullYear(), todayDate.getMonth(), getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear()));
     if (monthEnd.getDay() != 6) {
+        if(monthBegin < monthEnd){
+            yearNumSetting = yearNumSetting + 1;
+        }
+
         monthEnd = getFirstDayOfMonth(todayDate.getMonth() + 1, yearNumSetting, 6);
     }
 
