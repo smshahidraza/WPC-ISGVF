@@ -1109,14 +1109,18 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     var monthBegin = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
     if (monthBegin.getDay() != 0) {
         monthBegin = getLastDayOfMonth(todayDate.getMonth() - 1, yearNumSetting, 0);
+        if(monthBegin > todayDate){
+            monthBegin = getLastDayOfMonth(todayDate.getMonth() - 1, yearNumSetting - 1, 0);
+         }        
     }
     var monthEnd = new Date(todayDate.getFullYear(), todayDate.getMonth(), getDaysInMonth(todayDate.getMonth() + 1, todayDate.getFullYear()));
     if (monthEnd.getDay() != 6) {
-        if(monthBegin < monthEnd){
-            yearNumSetting = yearNumSetting + 1;
-        }
 
         monthEnd = getFirstDayOfMonth(todayDate.getMonth() + 1, yearNumSetting, 6);
+        if(monthBegin > monthEnd){
+            yearNumSetting = yearNumSetting + 1;
+            monthEnd = getFirstDayOfMonth(todayDate.getMonth() + 1, yearNumSetting, 6);
+        }
     }
 
     console.log("Month:" + monthNum + "Year:" + yearNumSetting);
