@@ -676,8 +676,11 @@ function createJumaIcon(leftcontext, leftcanvas, juma1, juma2){
     timeWidth = leftcontext.measureText("1. "+juma1).width;
     leftcontext.fillText("1  "+juma1,70, leftcanvas.height/2 + leftcanvas.height*0.05);
  
-    var timeWidth1 = leftcontext.measureText("2. "+juma2).width;
-    leftcontext.fillText("2  "+juma2,70, leftcanvas.height/2 + leftcanvas.height*0.35);
+    var timeWidth1 = "";
+    if( juma2 != "" ) {
+      var timeWidth1 = leftcontext.measureText("2. "+juma2).width;
+      leftcontext.fillText("2  "+juma2,70, leftcanvas.height/2 + leftcanvas.height*0.35);
+    }
  
 
     //todayDate = sunRisetime.getTime();
@@ -691,10 +694,11 @@ function createJumaIcon(leftcontext, leftcanvas, juma1, juma2){
     fontsize = Math.round(radius*2.5*0.2);
     leftcontext.font=fontsize+"px "+isgvffont;
   
-    var aWidth = leftcontext.measureText("PM").width;    
-    leftcontext.fillText("PM",50 + timeWidth1 + 20, leftcanvas.height/2 + leftcanvas.height*0.35 );
-    leftcontext.fillText("nd",93 , leftcanvas.height/2 + leftcanvas.height*0.23 );
-
+    if(timeWidth1 != "" ) {
+      var aWidth = leftcontext.measureText("PM").width;    
+      leftcontext.fillText("PM",50 + timeWidth1 + 20, leftcanvas.height/2 + leftcanvas.height*0.35 );
+      leftcontext.fillText("nd",93 , leftcanvas.height/2 + leftcanvas.height*0.23 );
+    }
   
     var aWidth = leftcontext.measureText("PM").width;    
     leftcontext.fillText("PM",50 + timeWidth + 20, leftcanvas.height/2 + leftcanvas.height*0.05 );

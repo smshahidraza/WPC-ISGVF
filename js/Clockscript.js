@@ -1296,7 +1296,11 @@ function loadSetting(monthNumSetting, _yearNumSetting) {
     monthTime += "<tr class='monthprayer-time-tr' style='background:rgb(12, 151, 191)'><td></td><td colspan='3' style='padding:10px;text-align:left;font-size:20px'>";
     monthTime += "<span>* Fajr Iqamah on Weekend –30  Min. before Sunrise </span><br>"+dhuharWeekendTime+"</td>";
     monthTime += "<td>Jumma Salah</td><td>1<sup>st</sup></br> "+clockSetting.getFirstJumaTime();
-    monthTime += "PM</td><td>2<sup>nd</sup> </br> "+clockSetting.getSecondJumaTime()+" PM</td></tr>";
+    if(clockSetting.getSecondJumaTime() == ""){
+        monthTime += "PM</td><td> </br> "+clockSetting.getSecondJumaTime()+"</td></tr>";
+    }else{
+        monthTime += "PM</td><td>2<sup>nd</sup> </br> "+clockSetting.getSecondJumaTime()+"PM </td></tr>";
+    }
 	var backgroundimagesrc = "http://placesunderthesun.com/wp-content/uploads/2014/06/Stargazing-in-Cherry-Spring-State-Park-Pennsylvania-2.jpg";
     monthTime += "</tbody></table><div style='text-align:right'><span style='font-size:12px'><a href='http://www.freepik.com'>Background image: "+backgroundimagesrc+"</a></span></div>";
     //document.getElementById("clockBody").style.display="none";
