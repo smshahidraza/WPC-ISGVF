@@ -25,7 +25,7 @@
       <![endif]-->
    </head>
    <body>
-      <div class="site-wrapper" style='text-align:center;background-image: url(./images/nightsky2.jpg);background-repeat:no-repeat;background-size: 100% 100%;'">
+      <div class="site-wrapper" style='text-align:center;background-image: url(./images/nightsky2.jpeg);background-repeat:no-repeat;background-size: 100% 100%;'">
          <div class="site-wrapper-inner">
             <div class="cover-container">
 
@@ -171,25 +171,27 @@
       <div id="utildiv" class="util-div" style="display:none">
          <canvas style="border:0px solid gray; cursor: pointer; background-color: #FF3300" id='lowerbase5canvas' ></canvas>
       </div>
+      
       <div id="mastfoot" class="mastfoot">
          
-         <div id="utilityfooter">
-            <div class="sunrise-time ">
+         <div class='row' id="utilityfooter">
+
+            <div class="col-lg-1">
                <canvas id='lowerbase1canvas' ></canvas>
             </div>
-            <div class="qibla-direction" >
+            <div class="col-lg-1 " >
                <canvas  id='lowerbase3canvas' ></canvas>
             </div>
-            <div class="zawal-time " >
+            <div class="col-lg-3" >
                <canvas  id='lowerbase6canvas' ></canvas>
             </div>
-            <div class="juma-time">
+            <div class="col-lg-1">
                <canvas  id='lowerbase4canvas' ></canvas>
             </div>
-            <div class="moon-time">
+            <div class="col-lg-1">
                <canvas  id='lowerbase2canvas' ></canvas>
             </div>
-            <div id="currtime" class="curr-time">
+            <div class="col-lg-5 currtime" id="currtime" >
                <canvas id='timecanvas' ></canvas>
             </div>
          </div>
