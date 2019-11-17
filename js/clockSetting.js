@@ -34,6 +34,10 @@ function ClockSetting(method) {
 			return this.getPrayerClockSetting()[11].timelimitArc === "on";						
 		},
 
+		getBackgroundImage() {
+			return this.getPrayerClockSetting()[12].backgroundimage;				
+		},
+
 		getPrayerClockMessage: function(){
 			var messageObject = prayerTimeMessage;
 			return messageObject;

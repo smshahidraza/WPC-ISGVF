@@ -903,7 +903,7 @@ function setupSlider() {
 	         ).appendTo('.carousel-inner');
 			 loadEvents();
         } else if (type == 'slides'){
-            $('<div class="item" style="height:auto" data-interval="' + delay * 1000 + '"><div class="container">' +
+            $('<div class="item" style="display:none;height:auto" data-interval="' + delay * 1000 + '"><div class="container">' +
                 '<img src="' + m[i].source + '" style="padding-top:20px;width:1100px;height:600px">' +
                 '</div><div class="carousel-caption"></div>   </div>'
             ).appendTo('.carousel-inner');
@@ -938,27 +938,39 @@ function setupSlider() {
 
 
         var currentIndex = $('div.active').index() + 1;
+        var imageSource = $('#myCarousel').find('div.active .container img').attr('src');
         // console.log("currentIndex:" + currentIndex);
+        $("#mainBackgroundDiv")[0].style.backgroundImage="url(" + clockSetting.getBackgroundImage() + ")";
+
         if (currentIndex == 1) {
  			
  			fillClockArray(10);
         	animateloop = setInterval(createClockAnimation, 25);
 
-            $("#utilityfooter").fadeIn("slow");
-            // $("#utilityfooter").show();
+            // $("#utilityfooter").fadeIn("slow");
+            $("#utilityfooter").show();
             $("#iqama-time").show();
             $("#header-nav").show();
             $("#horiz-time").hide();
             $("#leftPanel").hide();
 
         } else {
-            $("#utilityfooter").fadeOut("slow");
-            // $("#utilityfooter").hide();  
+            // $("#utilityfooter").fadeOut("slow");
+            $("#utilityfooter").hide();  
             $("#iqama-time").hide();
             $("#header-nav").hide();
             $("#horiz-time").show();
-            $("#leftPanel").show();
+            $("#leftPanel").hide();
+            if (imageSource != null ) {
 
+
+                $('#mainBackgroundDiv').fadeTo('slow', 0.3, function()
+                {
+                    $(this).css('background-image', 'url(' + imageSource + ')');
+                }).fadeTo('slow', 1);
+
+               // $("#mainBackgroundDiv")[0].style.backgroundImage="url("+ imageSource + ")";
+            }
 
         }
 
@@ -972,6 +984,9 @@ function setupApp() {
 
     var date = new Date(); // today
     currentDate = date;
+
+    
+    $("#mainBackgroundDiv")[0].style.backgroundImage="url(" + clockSetting.getBackgroundImage() + ")";
 
     setupPrayerTimeSetting();
 

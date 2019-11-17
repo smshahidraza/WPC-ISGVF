@@ -13,19 +13,20 @@
 		{"slider":"on"}, // Values [on, off]
 		{"hijriAdjustDay":3}, // Values [1,2,3,0,-1,-2,-3]
 		{"messageseparator":"..."}, // Values ["|",",","...","."] Any keyboard character can be used as a message separator.
-		{"timelimitArc":"off"} // Values [on, off]
+		{"timelimitArc":"off"}, // Values [on, off]
+		{"backgroundimage":"images/nightsky2.jpeg"} // background image of the main dashboard page.
 	],
 
 	"SLIDER" :
 	[
 		{"type":"dailytime", "show": "yes", "delayinsec":"5"}, // Do not remove this line.
-		{"type":"monthtime", "show": "yes", "delayinsec":"3"}, // Do not remove this line.
-		{"type":"ramadantime", "show": "yes", "delayinsec":"3", "begindate":"20JUN2017", "enddate":"20JUL2017"}, // Do not remove this line.
+		{"type":"monthtime", "show": "yes", "delayinsec":"5"}, // Do not remove this line.
+		{"type":"ramadantime", "show": "no", "delayinsec":"3", "begindate":"20JUN2017", "enddate":"20JUL2017"}, // Do not remove this line.
 		{"type":"allmonthtime", "show": "no", "delayinsec":"3"}, // Do not remove this line.		
-		{"type":"events", "show":"no", "delayinsec":"3", "source":"events/event.html"},
-		{"type":"slides", "show":"yes", "delayinsec":"5", "source":"slides/ramadanmessage.png"},
-		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/isgvf_poster.jpg"},
-		{"type":"slides", "show":"no", "delayinsec":"3", "source":"slides/enter.jpg"},
+		{"type":"events", "show":"yes", "delayinsec":"5", "source":"events/event.html"},
+		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/ramadanmessage.png"},
+		{"type":"slides", "show":"yes", "delayinsec":"5", "source":"slides/isgvf_poster.jpg"},
+		{"type":"slides", "show":"yes", "delayinsec":"5", "source":"slides/enter.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/exit.jpg"},
 		{"type":"slides", "show":"no", "delayinsec":"5", "source":"slides/isgvf_halfsheet.jpg"},		
 		{"type":"slides", "show":"no", "delayinsec":"10", "source":"slides/bismillah.png"},
