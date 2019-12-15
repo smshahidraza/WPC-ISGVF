@@ -22,12 +22,13 @@ var settingmode = false;
 var monthNum, yearNumSetting;
 
 var timeLimitArcColor = "#00ACC1"; //"#0099CC";
-var timeLimitArcColorRGB = "rgba(255,69,0,1)";
+var timeLimitArcColorRGB = "#0066CC";
 // FF4500
 var clockColorCurrent = "#333";
 var clockColor = "white";
 var handColorTransparent = "rgba(245,245,245,0.7)";
 var clockHandColor = "rgba(245,245,245,0.6)";
+var currentClockBackground = "rgba(211,211,211,0.53)";
 
 var fadeIn = true;
 var fadeInClock = true;
@@ -465,7 +466,7 @@ function refreshClock() {
                     var canvasName = 'lowerbase' + canvasIndex + 'canvas';
                     if (getCurrentPrayerTime().name == clocksArray[0][index].name) {
                         //$("#clock"+canvasIndex).css("padding-top","10px");
-                        $("#" + canvasName).css("background", "rgba(255,207,0,0.6)");
+                        $("#" + canvasName).css("background", currentClockBackground);
                         $("#" + canvasName).css("border-bottom", "3px solid white");
 
                         color = clockColorCurrent;
@@ -608,7 +609,7 @@ function createClock(canvas, animateDate, sdate, edate, name, next, lineWidth, r
         createHand(canvas, animateDate.getMinutes(), false, minLineWidth, radius, clockColor);
         //writeHourNumberInClock(context, canvas, "232",radius,"IP", 12);
         //writeRomanHourNumberInClock(context, canvas, radius);
-        drawHourMarkInClock(context, canvas, radius);
+        // drawHourMarkInClock(context, canvas, radius);
     //}
 
 }
@@ -846,7 +847,7 @@ function getAnimationSteps(sdate, steps) {
 
 function setupPrayerTimeSetting() {
     //var clockSetting = clockSetting.getPrayerClockSetting('sETTING');
-    $('#header-title').text(clockSetting.getName());
+    //$('#header-title').text(clockSetting.getName());
     $('#leftPanel').text(clockSetting.getName());
     $('#header-subtitle').text(clockSetting.getWebsite());
     $('#scrollingmessage').text(clockSetting.getAllActiveDateMessage());
@@ -2095,7 +2096,7 @@ function fillClockArray(numberofsteps) {
             //if(clocksArray[0]['CURRENT'].name != prayerClockIns[pClkInsind].name){
             fillUpClocksArray(clocksArray[0][clockSequence[clockCounter]], prayerClockIns[pClkInsind], numberofsteps);
             if (getCurrentPrayerTime().name == paryerNameSmall) {
-                $("#clock"+paryerNameSmall).css("background", "rgba(255,207,0,0.6)");
+                $("#clock"+paryerNameSmall).css("background", currentClockBackground);
                 $("#clock"+paryerNameSmall).css("border-bottom", "2px solid white");
                 $("#clock"+paryerNameSmall).css("padding-bottom", "5px");
             }else{
