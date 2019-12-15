@@ -21,14 +21,15 @@ var currentDate;
 var settingmode = false;
 var monthNum, yearNumSetting;
 
-var timeLimitArcColor = "#00ACC1"; //"#0099CC";
-var timeLimitArcColorRGB = "#0066CC";
+var timeLimitArcColor = "#FF652F"; //"#00ACC1"; //"#0099CC";
+var timeLimitArcColorRGB = "#FFE400"; //"#0066CC";
 // FF4500
 var clockColorCurrent = "#333";
 var clockColor = "white";
 var handColorTransparent = "rgba(245,245,245,0.7)";
 var clockHandColor = "rgba(245,245,245,0.6)";
-var currentClockBackground = "rgba(211,211,211,0.53)";
+//var currentClockBackground = "rgba(211,211,211,0.53)";
+var currentClockBackground = "#14A76C";
 
 var fadeIn = true;
 var fadeInClock = true;
@@ -466,6 +467,7 @@ function refreshClock() {
                     var canvasName = 'lowerbase' + canvasIndex + 'canvas';
                     if (getCurrentPrayerTime().name == clocksArray[0][index].name) {
                         //$("#clock"+canvasIndex).css("padding-top","10px");
+                        $("#clock"+canvasIndex).css("background", currentClockBackground);
                         $("#" + canvasName).css("background", currentClockBackground);
                         $("#" + canvasName).css("border-bottom", "3px solid white");
 
@@ -474,6 +476,7 @@ function refreshClock() {
                         currentCanvasName = canvasName;
 
                     } else {
+                        $("#clock"+canvasIndex).css("background", "none");
                         $("#" + canvasName).css("background", "none");
                         $("#" + canvasName).css("border-bottom", "");
                         color = clockColor;
