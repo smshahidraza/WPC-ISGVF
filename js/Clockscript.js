@@ -999,10 +999,10 @@ function setupApp() {
     dayLightSaving = 'auto',
         method = 'ISNA';
     if (mode == 'auto') {
-        prayerClocks.initClock(date.getFullYear(), method, [40.06, -122.4212], -8, dayLightSaving);
+        prayerClocks.initClock(date.getFullYear(), method, [40.07, -75.43], -5, dayLightSaving);
         prayerClockIns = prayerClocks.getPrayerClockForDay(date);
     } else {
-        prayerClocks.initManualClock(date.getFullYear(), method, [37.7933, -122.4212], -8, dayLightSaving);
+        prayerClocks.initManualClock(date.getFullYear(), method, [39.00, -77.38], -8, dayLightSaving);
         prayerClockIns = prayerClocks.getPrayerClockForDay(date);
         clockTitle = prayerClocks.getPrayerClockConfig()[0].title;
         //prayerClockIns = prayerClocks.getManualPrayerClockForDay(date);

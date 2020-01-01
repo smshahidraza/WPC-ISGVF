@@ -5,6 +5,17 @@ function ClockSetting(method) {
 	return {
 	
 
+		getPrayerTimeRules: function(){
+			var prayerTimeRules = prayerTimeRule['RULES'];					
+			return prayerTimeRules ;
+		},
+
+		getPrayerTimeRulesForPrayerTime: function(paryerTime){
+			var prayerTimeRules = prayerTimeRule['RULES'][paryerTime];					
+			return prayerTimeRules ;
+		},
+
+
 		getPrayerClockSetting: function(){
 			var settingObject = prayerTimeAppSetting['SETTING'];					
 			return settingObject ;
