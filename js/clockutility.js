@@ -275,7 +275,7 @@ function fromStringTimeToDateObject(namazTime, date){
   ampm =  hourmin[1].substring(2,4),
   namazMinute = Math.floor( hourmin[1].substring(0,2) );
   
-  if(ampm == 'pm' && temp_hour != 12){
+  if((ampm == 'pm' || ampm =='PM') && temp_hour != 12){
     temp_hour += 12;
   }
   var tempDate =  new Date();
@@ -361,6 +361,22 @@ function formDateToString( time )
   return timeString;
 }
 
+function formDateToStringHHMMA( time )
+{
+  // Get the hour integer part
+  hour = time.getHours();
+  minute = time.getMinutes();
+ 
+  var ap = "am";
+  if( hour   > 11 ) { ap = "pm";             }
+  if( hour   > 12 ) { hour = hour - 12;      }
+  if( hour   == 0 ) { hour = 12;             }  
+  if( minute < 10 ) { minute = "0" + minute; }
+  if( hour < 10 ) { hour = "0" + hour; }
+ 
+  timeString = hour + ":" + minute + ap;
+  return timeString;
+}
 
 function formDateToStringHMMA( time )
 {

@@ -1,0 +1,83 @@
+ prayerTimeRule = {    
+	"RULES" :
+	
+		
+		{
+			"FAJR" : [
+			{"type":"manual", "begindate":"01JAN", "enddate":"01FEB", "time":"06:30am", "dst":"on"}, 
+			{"type":"manual", "begindate":"02FEB", "enddate":"22FEB", "time":"06:15am", "dst":"on"}, 
+			{"type":"manual", "begindate":"23FEB", "enddate":"29FEB", "time":"06:00am", "dst":"on"}, 
+			{"type":"manual", "begindate":"01MAR", "enddate":"07MAR", "time":"05:45am", "dst":"on"}, 
+			{"type":"manual", "begindate":"08MAR", "enddate":"21MAR", "time":"06:30am", "dst":"off"}, 
+			{"type":"manual", "begindate":"22MAR", "enddate":"28MAR", "time":"06:15am", "dst":"off"}, 
+			{"type":"manual", "begindate":"29MAR", "enddate":"04APR", "time":"06:00am", "dst":"off"}, 
+			{"type":"manual", "begindate":"05APR", "enddate":"18APR", "time":"05:45am", "dst":"off"}, 
+			{"type":"manual", "begindate":"05APR", "enddate":"18APR", "time":"05:45am", "dst":"off"}, 
+			{"type":"manual", "begindate":"19APR", "enddate":"25APR", "time":"05:30am", "dst":"off"}, 
+			{"type":"manual", "begindate":"26APR", "enddate":"02MAY", "time":"05:15am", "dst":"off"}, 
+			{"type":"manual", "begindate":"03MAY", "enddate":"25JUL", "time":"05:00am", "dst":"off"}, 
+			{"type":"manual", "begindate":"26JUL", "enddate":"01AUG", "time":"05:15am", "dst":"off"}, 
+			{"type":"manual", "begindate":"02AUG", "enddate":"22AUG", "time":"05:30am", "dst":"off"}, 
+			{"type":"manual", "begindate":"23AUG", "enddate":"05SEP", "time":"05:45am", "dst":"off"}, 
+			{"type":"manual", "begindate":"06SEP", "enddate":"19SEP", "time":"06:00am", "dst":"off"}, 
+			{"type":"manual", "begindate":"20SEP", "enddate":"10OCT", "time":"06:15am", "dst":"off"}, 
+			{"type":"manual", "begindate":"11OCT", "enddate":"31OCT", "time":"06:30am", "dst":"off"}, 
+			{"type":"manual", "begindate":"01NOV", "enddate":"28NOV", "time":"06:00am", "dst":"on"}, 
+			{"type":"manual", "begindate":"29NOV", "enddate":"05DEC", "time":"06:15am", "dst":"on"}, 
+			{"type":"manual", "begindate":"6DEC", "enddate":"02JAN", "time":"06:30am", "dst":"on"}, 
+			{"type":"auto", "begindate":"01JAN", "enddate":"31DEC", "time":"30", "dst":"on" }
+		],
+		"DHUHR" : [
+			{"type":"manual", "begindate":"01JAN", "enddate":"07MAR", "time":"12:30pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"08MAR", "enddate":"31OCT", "time":"01:30pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"01NOV", "enddate":"31DEC", "time":"12:30pm", "dst":"on"}, 
+			{"type":"auto", "begindate":"01JAN", "enddate":"07MAR", "time":"01:30pm", "dst":"on"},
+			{"type":"auto", "begindate":"01NOV", "enddate":"31DEC", "time":"01:30pm", "dst":"on"}
+		],
+		"ASR" : [
+			{"type":"manual", "begindate":"01JAN", "enddate":"04JAN", "time":"03:30pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"05JAN", "enddate":"25JAN", "time":"03:45pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"26JAN", "enddate":"01FEB", "time":"04:00pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"02FEB", "enddate":"15FEB", "time":"04:15pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"16FEB", "enddate":"07MAR", "time":"04:30pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"08MAR", "enddate":"28MAR", "time":"05:45pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"29MAR", "enddate":"25APR", "time":"06:00pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"29MAR", "enddate":"25APR", "time":"06:00pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"26APR", "enddate":"23MAY", "time":"06:15pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"24MAY", "enddate":"01AUG", "time":"06:30pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"02AUG", "enddate":"22AUG", "time":"06:15pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"23AUG", "enddate":"29AUG", "time":"06:00pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"30AUG", "enddate":"26SEP", "time":"05:45pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"27SEP", "enddate":"03OCT", "time":"05:30pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"04OCT", "enddate":"10OCT", "time":"05:15pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"11OCT", "enddate":"24OCT", "time":"05:00pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"25OCT", "enddate":"31OCT", "time":"04:45pm", "dst":"off"}, 
+			{"type":"manual", "begindate":"01NOV", "enddate":"31DEC", "time":"03:30pm", "dst":"off"} 
+		],
+		"MAGHRIB" : [
+			{"type":"auto", "begindate":"01JAN", "enddate":"31DEC", "time":"5", "dst":"on"}
+		],
+		"ISHA" : [
+			{"type":"manual", "begindate":"01JAN", "enddate":"07MAR", "time":"08:00pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"08MAR", "enddate":"04APR", "time":"09:00pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"05APR", "enddate":"18APR", "time":"09:15pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"19APR", "enddate":"25APR", "time":"09:30pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"26APR", "enddate":"09MAY", "time":"09:45pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"10MAY", "enddate":"23MAY", "time":"10:00pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"24MAY", "enddate":"06JUN", "time":"10:15pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"07JUN", "enddate":"11JUL", "time":"10:20pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"12JUL", "enddate":"25JUL", "time":"10:15pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"26JUL", "enddate":"08AUG", "time":"10:00pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"09AUG", "enddate":"15AUG", "time":"09:45pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"16AUG", "enddate":"22AUG", "time":"09:30pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"23AUG", "enddate":"05SEP", "time":"09:15pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"06SEP", "enddate":"12SEP", "time":"09:00pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"13SEP", "enddate":"19SEP", "time":"08:45pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"20SEP", "enddate":"26SEP", "time":"08:30pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"27SEP", "enddate":"10OCT", "time":"08:15pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"11OCT", "enddate":"31DEC", "time":"08:00pm", "dst":"on"},
+			{"type":"auto", "begindate":"01JAN", "enddate":"07MAR", "time":"07:30pm", "dst":"on"}
+		]
+		}						
+	
+}
