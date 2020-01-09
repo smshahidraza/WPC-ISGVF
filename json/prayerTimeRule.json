@@ -51,8 +51,9 @@
 			{"type":"auto", "begindate":"01JAN", "enddate":"31DEC", "time":"5", "dst":"on"}
 		],
 		"ISHA" : [
-			{"type":"manual", "begindate":"01JAN", "enddate":"31JAN", "time":"06:30pm", "dst":"on"}, 
-			{"type":"manual", "begindate":"01FEB", "enddate":"31DEC", "time":"07:00pm", "dst":"on"}
+			{"type":"manual", "begindate":"01JAN", "enddate":"09JAN", "time":"06:30pm", "dst":"on"}, 
+			{"type":"manual", "begindate":"10JAN", "enddate":"26JAN", "time":"06:45pm", "dst":"on"},
+			{"type":"manual", "begindate":"27JAN", "enddate":"29FEB", "time":"07:00pm", "dst":"on"}
 		]
 		}						
 	
